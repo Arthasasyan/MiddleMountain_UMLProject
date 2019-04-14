@@ -19,4 +19,5 @@ public interface DatabaseDAO {
   Set<List<String>> executeQuery(String query) throws Exception;
   void updateTable(String table, Integer id, List<String> payload) throws Exception;
   void deleteFromTable(String table, Integer id) throws Exception;
+  void insertInto(String table, List<String> payload) throws Exception;
 }

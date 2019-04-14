@@ -25,4 +25,16 @@ public interface Service {
   List<Order> getOrders(Employee employee) throws Exception;
   List<CreationJob> getCreationJobs(Employee employee) throws Exception;
   Employee login(String username, String password) throws Exception;
+  void createOrder(Order order) throws Exception;
+
+  /**
+   *
+   * @param employee
+   * @param username
+   * @return employee's password
+   * @throws Exception
+   */
+  String createEmployee(Employee employee, String username) throws Exception;
+  void createGood(Good good) throws Exception;
+  void createCreationJob(CreationJob creationJob) throws Exception;
 }
