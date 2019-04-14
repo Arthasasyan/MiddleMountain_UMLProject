@@ -1,6 +1,8 @@
 package com.middlemountain.service;
 
 import com.middlemountain.dao.DatabaseDAO;
+import com.middlemountain.dao.MsSQLDAO;
+import com.middlemountain.enums.MagicType;
 import com.middlemountain.model.CreationJob;
 import com.middlemountain.model.Employee;
 import com.middlemountain.model.Good;
@@ -15,8 +17,19 @@ public class MagicService implements Service {
     this.dao = dao;
   }
 
+  public MagicService() throws Exception{
+    dao = new MsSQLDAO();
+  }
+
   public Good getGood(Integer id) throws Exception {
-    return null;
+    List<String> goodInDatabse = dao.getGood(id);
+    Good good = new Good()
+            .setId(Integer.parseInt(goodInDatabse.get(0)))
+            .setMagicType(MagicType.values()[Integer.parseInt(goodInDatabse.get(1))-1])
+            .setName(goodInDatabse.get(2))
+            .setDescription(goodInDatabse.get(3))
+            .setPrice(Float.parseFloat(goodInDatabse.get(4)));
+    return good;
   }
 
   public Good getGood(String name) throws Exception {
