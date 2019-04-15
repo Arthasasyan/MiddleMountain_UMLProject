@@ -7,5 +7,9 @@ public enum MagicType {
   GROUND,
   MENTAL,
   ARCANE,
-  HOUSEHOLD
+  HOUSEHOLD;
+
+  public static MagicType fromInteger(String number) {
+    return null;
+  }
 }
