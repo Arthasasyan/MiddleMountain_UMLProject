@@ -1,4 +1,4 @@
-package com.devcolibri.mavenjavafxapp.controllers;
+package com.middlemountain.client.mavenjavafxapp.controllers;
 
 import com.middlemountain.model.Good;
 import com.middlemountain.service.Service;

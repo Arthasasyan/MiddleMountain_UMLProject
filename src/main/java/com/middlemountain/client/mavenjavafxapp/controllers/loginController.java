@@ -1,4 +1,4 @@
-package com.devcolibri.mavenjavafxapp.controllers;
+package com.middlemountain.client.mavenjavafxapp.controllers;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
