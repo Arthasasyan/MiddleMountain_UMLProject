@@ -6,5 +6,12 @@ public enum OrderStatus {
   SHIPPING,
   READY,
   CLOSED,
-  DENIED
+  DENIED;
+
+  public static OrderStatus fromInteger(String number) {
+    return OrderStatus.values()[Integer.parseInt(number) - 1];
+  }
+  public static Integer toInteger(OrderStatus orderStatus){
+    return (orderStatus.ordinal() + 1);
+  }
 }
