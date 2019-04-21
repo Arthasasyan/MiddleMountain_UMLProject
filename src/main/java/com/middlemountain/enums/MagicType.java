@@ -10,6 +10,9 @@ public enum MagicType {
   HOUSEHOLD;
 
   public static MagicType fromInteger(String number) {
-    return null;
+    return MagicType.values()[Integer.parseInt(number) - 1];
+  }
+  public static Integer toInteger(MagicType magicType){
+    return (magicType.ordinal() + 1);
   }
 }

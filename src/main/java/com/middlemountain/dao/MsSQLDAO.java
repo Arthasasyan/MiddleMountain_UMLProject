@@ -76,7 +76,7 @@ public class MsSQLDAO implements DatabaseDAO {
   }
 
   public List<String> getEmployee(String name) throws Exception {
-    String query = "Select * from Employee where Name = '" + name + "'";
+    String query = "Select * from Employee where Username = '" + name + "'";
     return getListOfString(query);
   }
 
