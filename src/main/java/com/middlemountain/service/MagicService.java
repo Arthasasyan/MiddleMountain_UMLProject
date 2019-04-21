@@ -9,6 +9,7 @@ import com.middlemountain.model.Good;
 import com.middlemountain.model.Order;
 
 import java.util.List;
+import java.util.Random;
 
 public class MagicService implements Service {
   private DatabaseDAO dao;
@@ -25,7 +26,7 @@ public class MagicService implements Service {
     List<String> goodInDatabse = dao.getGood(id);
     Good good = new Good()
             .setId(Integer.parseInt(goodInDatabse.get(0)))
-            .setMagicType(MagicType.values()[Integer.parseInt(goodInDatabse.get(1))-1])
+            .setMagicType(MagicType.fromInteger(goodInDatabse.get(1)))
             .setName(goodInDatabse.get(2))
             .setDescription(goodInDatabse.get(3))
             .setPrice(Float.parseFloat(goodInDatabse.get(4)));
@@ -106,5 +107,17 @@ public class MagicService implements Service {
 
   public void createCreationJob(CreationJob creationJob) throws Exception {
 
+  }
+
+  private String generateString()
+  {
+    String letters =  "QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm";
+    String password = "";
+    int length = 10;
+    Random rng = new Random();
+    for(int i=0;i<length;i++){
+      password+=letters.charAt(rng.nextInt(letters.length()));
+    }
+    return password;
   }
 }
