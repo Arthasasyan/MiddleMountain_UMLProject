@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #4c676b;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.middlemountain.client.mavenjavafxapp.controllers.Controller">
+   <children>
+      <AnchorPane layoutY="69.0" prefHeight="331.0" prefWidth="600.0" style="-fx-background-color: #77a19f;">
+         <children>
+            <AnchorPane prefHeight="331.0" prefWidth="300.0">
+               <children>
+                  <ImageView blendMode="SOFT_LIGHT" fitHeight="331.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="/assets/shopImage.jpg" />
+                     </image>
+                  </ImageView>
+                  <AnchorPane layoutX="400.0" prefHeight="331.0" prefWidth="200.0" style="-fx-background-color: #6b959b; -fx-border-color: #b3dcd8; -fx-border-radius: 3;">
+                     <children>
+                        <Text fill="#b3dcd8" layoutX="9.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Быть лучшим - это здорово!">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+         </children></AnchorPane>
+      <Text fill="#b3dcd8" layoutX="179.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Middle Mountain">
+         <font>
+            <Font name="Bookman Old Style" size="29.0" />
+         </font>
+      </Text>
+      <Button fx:id="enterButtonAction" layoutX="536.0" layoutY="19.0" mnemonicParsing="false" style="-fx-border-radius: 5; -fx-background-color: #dbeee8;" text="Log In" textFill="#72938e" />
+   </children>
+</AnchorPane>

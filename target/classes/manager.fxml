@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #4c676b;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.managerController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #4c676b;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.middlemountain.client.mavenjavafxapp.controllers.managerController">
     <children>
         <AnchorPane layoutY="69.0" prefHeight="331.0" prefWidth="600.0" style="-fx-background-color: #77a19f;">
             <children>
@@ -20,22 +20,22 @@
                     <children>
                         <ImageView blendMode="SOFT_LIGHT" fitHeight="331.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../assets/shopImage.jpg" />
+                                <Image url="/assets/shopImage.jpg" />
                             </image>
                         </ImageView>
                   <AnchorPane prefHeight="331.0" prefWidth="300.0" style="-fx-background-color: #77a19f;">
                      <children>
                         <ImageView fitHeight="110.0" fitWidth="84.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../assets/face.jpg" />
+                              <Image url="/assets/Mna.jpg" />
                            </image>
                         </ImageView>
-                        <Text fill="#b3dcd8" layoutX="114.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Имя">
+                        <Text fill="#b3dcd8" layoutX="114.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name">
                            <font>
                               <Font size="9.0" />
                            </font>
                         </Text>
-                        <Text fill="#b3dcd8" layoutX="113.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Фамилия">
+                        <Text fill="#b3dcd8" layoutX="113.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last Name">
                            <font>
                               <Font size="9.0" />
                            </font>
@@ -53,20 +53,20 @@
                                        <children>
                                           <BorderPane prefHeight="27.0" prefWidth="155.0">
                                              <center>
-                                                <Text fill="#b3dcd8" strokeType="OUTSIDE" strokeWidth="0.0" text="Товар" BorderPane.alignment="CENTER" />
+                                                <Text fill="#b3dcd8" strokeType="OUTSIDE" strokeWidth="0.0" text="Good" BorderPane.alignment="CENTER" />
                                              </center>
                                           </BorderPane>
-                                          <Button fx:id="createGoodAction" minWidth="-Infinity" mnemonicParsing="false" prefHeight="27.0" prefWidth="101.0" style="-fx-border-color: #d4d4d4; -fx-background-color: #edebeb; -fx-border-radius: 5;" text="Создать" textFill="#686767">
+                                          <Button fx:id="createGoodAction" minWidth="-Infinity" mnemonicParsing="false" prefHeight="27.0" prefWidth="101.0" style="-fx-border-color: #d4d4d4; -fx-background-color: #edebeb; -fx-border-radius: 5;" text="Create" textFill="#686767">
                                              <VBox.margin>
                                                 <Insets left="28.0" top="5.0" />
                                              </VBox.margin>
                                           </Button>
-                                          <Button fx:id="changeGoodAction" minWidth="-Infinity" mnemonicParsing="false" prefHeight="27.0" prefWidth="101.0" style="-fx-border-color: #d4d4d4; -fx-background-color: #edebeb; -fx-border-radius: 5;" text="Редактировать" textFill="#686767">
+                                          <Button fx:id="changeGoodAction" minWidth="-Infinity" mnemonicParsing="false" prefHeight="27.0" prefWidth="101.0" style="-fx-border-color: #d4d4d4; -fx-background-color: #edebeb; -fx-border-radius: 5;" text="Edit" textFill="#686767">
                                              <VBox.margin>
                                                 <Insets left="28.0" top="10.0" />
                                              </VBox.margin>
                                           </Button>
-                                          <Button fx:id="deleteGoodAction" minWidth="-Infinity" mnemonicParsing="false" prefHeight="27.0" prefWidth="101.0" style="-fx-border-color: #d4d4d4; -fx-background-color: #edebeb; -fx-border-radius: 5;" text="Удалить" textFill="#686767">
+                                          <Button fx:id="deleteGoodAction" minWidth="-Infinity" mnemonicParsing="false" prefHeight="27.0" prefWidth="101.0" style="-fx-border-color: #d4d4d4; -fx-background-color: #edebeb; -fx-border-radius: 5;" text="Delete" textFill="#686767">
                                              <VBox.margin>
                                                 <Insets left="28.0" top="10.0" />
                                              </VBox.margin>
@@ -77,20 +77,20 @@
                                        <children>
                                           <BorderPane prefHeight="27.0" prefWidth="155.0">
                                              <center>
-                                                <Text fill="#b3dcd8" strokeType="OUTSIDE" strokeWidth="0.0" text="Персонал" BorderPane.alignment="CENTER" />
+                                                <Text fill="#b3dcd8" strokeType="OUTSIDE" strokeWidth="0.0" text="Staff" BorderPane.alignment="CENTER" />
                                              </center>
                                           </BorderPane>
-                                          <Button fx:id="createPersonAction" minWidth="-Infinity" mnemonicParsing="false" prefHeight="27.0" prefWidth="101.0" style="-fx-border-color: #d4d4d4; -fx-background-color: #edebeb; -fx-border-radius: 5;" text="Создать" textFill="#686767">
+                                          <Button fx:id="createPersonAction" minWidth="-Infinity" mnemonicParsing="false" prefHeight="27.0" prefWidth="101.0" style="-fx-border-color: #d4d4d4; -fx-background-color: #edebeb; -fx-border-radius: 5;" text="Create" textFill="#686767">
                                              <VBox.margin>
                                                 <Insets left="28.0" top="5.0" />
                                              </VBox.margin>
                                           </Button>
-                                          <Button fx:id="changePersonAction" minWidth="-Infinity" mnemonicParsing="false" prefHeight="27.0" prefWidth="101.0" style="-fx-border-color: #d4d4d4; -fx-background-color: #edebeb; -fx-border-radius: 5;" text="Редактировать" textFill="#686767">
+                                          <Button fx:id="changePersonAction" minWidth="-Infinity" mnemonicParsing="false" prefHeight="27.0" prefWidth="101.0" style="-fx-border-color: #d4d4d4; -fx-background-color: #edebeb; -fx-border-radius: 5;" text="Edit" textFill="#686767">
                                              <VBox.margin>
                                                 <Insets left="28.0" top="10.0" />
                                              </VBox.margin>
                                           </Button>
-                                          <Button fx:id="deletePersonAction" minWidth="-Infinity" mnemonicParsing="false" prefHeight="27.0" prefWidth="101.0" style="-fx-border-color: #d4d4d4; -fx-background-color: #edebeb; -fx-border-radius: 5;" text="Удалить" textFill="#686767">
+                                          <Button fx:id="deletePersonAction" minWidth="-Infinity" mnemonicParsing="false" prefHeight="27.0" prefWidth="101.0" style="-fx-border-color: #d4d4d4; -fx-background-color: #edebeb; -fx-border-radius: 5;" text="Delete" textFill="#686767">
                                              <VBox.margin>
                                                 <Insets left="28.0" top="10.0" />
                                              </VBox.margin>
@@ -101,18 +101,18 @@
                               </HBox>
                            </children>
                         </HBox>
-                        <Label layoutX="114.0" layoutY="42.0" prefHeight="25.0" prefWidth="149.0" style="-fx-background-color: #edebeb;" text="Артем" textFill="#686767" />
-                        <Label layoutX="114.0" layoutY="96.0" prefHeight="25.0" prefWidth="149.0" style="-fx-background-color: #edebeb;" text="Петров" textFill="#686767" />
+                        <Label layoutX="114.0" layoutY="42.0" prefHeight="25.0" prefWidth="149.0" style="-fx-background-color: #edebeb;" text="Art" textFill="#686767" />
+                        <Label layoutX="114.0" layoutY="96.0" prefHeight="25.0" prefWidth="149.0" style="-fx-background-color: #edebeb;" text="Petr" textFill="#686767" />
                      </children>
                   </AnchorPane>
                     </children>
                 </AnchorPane>
             </children></AnchorPane>
-        <Text fill="#b3dcd8" layoutX="222.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Middle Mountain">
+        <Text fill="#b3dcd8" layoutX="179.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Middle Mountain">
             <font>
                 <Font name="Bookman Old Style" size="29.0" />
             </font>
         </Text>
-        <Button fx:id="exitButtonAction" layoutX="535.0" layoutY="22.0" mnemonicParsing="false" style="-fx-border-radius: 5; -fx-background-color: #dbeee8;" text="Выход" textFill="#72938e" />
+        <Button fx:id="exitButtonAction" layoutX="551.0" layoutY="21.0" mnemonicParsing="false" style="-fx-border-radius: 5; -fx-background-color: #dbeee8;" text="Exit" textFill="#72938e" />
     </children>
 </AnchorPane>
