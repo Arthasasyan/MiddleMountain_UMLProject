@@ -21,7 +21,7 @@ public class Controller {
         enterButtonAction.setOnAction(event -> {
             try {
                 Stage stage = new Stage();
-                Parent root = FXMLLoader.load(getClass().getResource("../fxml/login.fxml"));
+                Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("login.fxml"));
                 stage.setTitle("Авторизация");
                 stage.setResizable(false);
                 stage.setScene(new Scene(root));

@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #4c676b;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.workerController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #4c676b;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.middlemountain.client.mavenjavafxapp.controllers.workerController">
     <children>
         <AnchorPane layoutY="69.0" prefHeight="331.0" prefWidth="600.0" style="-fx-background-color: #77a19f;">
             <children>
@@ -21,14 +21,14 @@
                     <children>
                         <ImageView blendMode="SOFT_LIGHT" fitHeight="331.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../assets/shopImage.jpg" />
+                                <Image url="/assets/shopImage.jpg" />
                             </image>
                         </ImageView>
                         <AnchorPane prefHeight="331.0" prefWidth="300.0" style="-fx-background-color: #77a19f;">
                             <children>
                                 <ImageView fitHeight="110.0" fitWidth="84.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
-                                        <Image url="@../assets/face.jpg" />
+                                        <Image url="/assets/face.jpg" />
                                     </image>
                                 </ImageView>
                                 <Text fill="#b3dcd8" layoutX="114.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name">
@@ -41,7 +41,7 @@
                                         <Font size="9.0" />
                                     </font>
                                 </Text>
-                                <Text fill="#b3dcd8" layoutX="89.0" layoutY="171.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Внести изменения">
+                                <Text fill="#b3dcd8" layoutX="124.0" layoutY="171.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Interface">
                                     <font>
                                         <Font size="15.0" />
                                     </font>
@@ -54,7 +54,7 @@
                                                     <children>
                                                         <BorderPane prefHeight="27.0" prefWidth="155.0">
                                                             <center>
-                                                                <Text fill="#b3dcd8" strokeType="OUTSIDE" strokeWidth="0.0" text="Заказ" BorderPane.alignment="CENTER" />
+                                                                <Text fill="#b3dcd8" strokeType="OUTSIDE" strokeWidth="0.0" text="Order" BorderPane.alignment="CENTER" />
                                                             </center>
                                                         </BorderPane>
                                                         <Button fx:id="createOrderAction" minWidth="-Infinity" mnemonicParsing="false" prefHeight="27.0" prefWidth="101.0" style="-fx-border-color: #d4d4d4; -fx-background-color: #edebeb; -fx-border-radius: 5;" text="Create" textFill="#686767">
@@ -92,48 +92,48 @@
                                         </HBox>
                                     </children>
                                 </HBox>
-                                <Label layoutX="114.0" layoutY="42.0" prefHeight="25.0" prefWidth="149.0" style="-fx-background-color: #edebeb;" text="Артем" textFill="#686767" />
-                                <Label layoutX="114.0" layoutY="96.0" prefHeight="25.0" prefWidth="149.0" style="-fx-background-color: #edebeb;" text="Петров" textFill="#686767" />
+                                <Label layoutX="114.0" layoutY="42.0" prefHeight="25.0" prefWidth="149.0" style="-fx-background-color: #edebeb;" text="Art" textFill="#686767" />
+                                <Label layoutX="114.0" layoutY="96.0" prefHeight="25.0" prefWidth="149.0" style="-fx-background-color: #edebeb;" text="Petr" textFill="#686767" />
                             </children>
                         </AnchorPane>
-                  <Text fill="#dbfffb" layoutX="415.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Зачарование">
+                  <Text fill="#dbfffb" layoutX="415.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enchant">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Text>
                   <VBox layoutX="403.0" layoutY="41.0" prefHeight="179.0" prefWidth="100.0">
                      <children>
-                        <CheckBox mnemonicParsing="false" text="CheckBox" textFill="#dbfffb">
+                        <CheckBox mnemonicParsing="false" text="FIRE" textFill="#dbfffb">
                            <VBox.margin>
                               <Insets top="5.0" />
                            </VBox.margin>
                         </CheckBox>
-                        <CheckBox mnemonicParsing="false" text="CheckBox" textFill="#dbfffb">
+                        <CheckBox mnemonicParsing="false" text="WATER" textFill="#dbfffb">
                            <VBox.margin>
                               <Insets top="10.0" />
                            </VBox.margin>
                         </CheckBox>
-                        <CheckBox mnemonicParsing="false" text="CheckBox" textFill="#dbfffb">
+                        <CheckBox mnemonicParsing="false" text="AIR" textFill="#dbfffb">
                            <VBox.margin>
                               <Insets top="10.0" />
                            </VBox.margin>
                         </CheckBox>
-                        <CheckBox mnemonicParsing="false" text="CheckBox" textFill="#dbfffb">
+                        <CheckBox mnemonicParsing="false" text="GROUND" textFill="#dbfffb">
                            <VBox.margin>
                               <Insets top="10.0" />
                            </VBox.margin>
                         </CheckBox>
-                        <CheckBox mnemonicParsing="false" text="CheckBox" textFill="#dbfffb">
+                        <CheckBox mnemonicParsing="false" text="MENTAL" textFill="#dbfffb">
                            <VBox.margin>
                               <Insets top="10.0" />
                            </VBox.margin>
                         </CheckBox>
-                        <CheckBox mnemonicParsing="false" text="CheckBox" textFill="#dbfffb">
+                        <CheckBox mnemonicParsing="false" text="ARCANE" textFill="#dbfffb">
                            <VBox.margin>
                               <Insets top="10.0" />
                            </VBox.margin>
                         </CheckBox>
-                        <CheckBox mnemonicParsing="false" text="CheckBox" textFill="#dbfffb">
+                        <CheckBox mnemonicParsing="false" text="HOUSEHOLD" textFill="#dbfffb">
                            <VBox.margin>
                               <Insets top="10.0" />
                            </VBox.margin>
@@ -148,6 +148,6 @@
                 <Font name="Bookman Old Style" size="29.0" />
             </font>
         </Text>
-        <Button fx:id="exitButtonAction" layoutX="535.0" layoutY="22.0" mnemonicParsing="false" style="-fx-border-radius: 5; -fx-background-color: #dbeee8;" text="Exit" textFill="#72938e" />
+        <Button fx:id="exitButtonAction" layoutX="551.0" layoutY="22.0" mnemonicParsing="false" style="-fx-border-radius: 5; -fx-background-color: #dbeee8;" text="Exit" textFill="#72938e" />
     </children>
 </AnchorPane>
