@@ -23,88 +23,77 @@
                                 <Image url="/assets/shopImage.jpg" />
                             </image>
                         </ImageView>
-                  <AnchorPane prefHeight="331.0" prefWidth="300.0" style="-fx-background-color: #77a19f;">
-                     <children>
-                        <ImageView fitHeight="110.0" fitWidth="84.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="/assets/Mna.jpg" />
-                           </image>
-                        </ImageView>
-                        <Text fill="#b3dcd8" layoutX="114.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name">
-                           <font>
-                              <Font size="9.0" />
-                           </font>
-                        </Text>
-                        <Text fill="#b3dcd8" layoutX="113.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last Name">
-                           <font>
-                              <Font size="9.0" />
-                           </font>
-                        </Text>
-                        <Text fill="#b3dcd8" layoutX="89.0" layoutY="171.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Внести изменения">
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </Text>
-                        <HBox layoutX="-2.0" layoutY="181.0" prefHeight="149.0" prefWidth="309.0">
-                           <children>
-                              <HBox prefHeight="149.0" prefWidth="311.0">
-                                 <children>
-                                    <VBox prefHeight="149.0" prefWidth="155.0">
-                                       <children>
-                                          <BorderPane prefHeight="27.0" prefWidth="155.0">
-                                             <center>
-                                                <Text fill="#b3dcd8" strokeType="OUTSIDE" strokeWidth="0.0" text="Good" BorderPane.alignment="CENTER" />
-                                             </center>
-                                          </BorderPane>
-                                          <Button fx:id="createGoodAction" minWidth="-Infinity" mnemonicParsing="false" prefHeight="27.0" prefWidth="101.0" style="-fx-border-color: #d4d4d4; -fx-background-color: #edebeb; -fx-border-radius: 5;" text="Create" textFill="#686767">
-                                             <VBox.margin>
-                                                <Insets left="28.0" top="5.0" />
-                                             </VBox.margin>
-                                          </Button>
-                                          <Button fx:id="changeGoodAction" minWidth="-Infinity" mnemonicParsing="false" prefHeight="27.0" prefWidth="101.0" style="-fx-border-color: #d4d4d4; -fx-background-color: #edebeb; -fx-border-radius: 5;" text="Edit" textFill="#686767">
-                                             <VBox.margin>
-                                                <Insets left="28.0" top="10.0" />
-                                             </VBox.margin>
-                                          </Button>
-                                          <Button fx:id="deleteGoodAction" minWidth="-Infinity" mnemonicParsing="false" prefHeight="27.0" prefWidth="101.0" style="-fx-border-color: #d4d4d4; -fx-background-color: #edebeb; -fx-border-radius: 5;" text="Delete" textFill="#686767">
-                                             <VBox.margin>
-                                                <Insets left="28.0" top="10.0" />
-                                             </VBox.margin>
-                                          </Button>
-                                       </children>
-                                    </VBox>
-                                    <VBox prefHeight="149.0" prefWidth="155.0">
-                                       <children>
-                                          <BorderPane prefHeight="27.0" prefWidth="155.0">
-                                             <center>
-                                                <Text fill="#b3dcd8" strokeType="OUTSIDE" strokeWidth="0.0" text="Staff" BorderPane.alignment="CENTER" />
-                                             </center>
-                                          </BorderPane>
-                                          <Button fx:id="createPersonAction" minWidth="-Infinity" mnemonicParsing="false" prefHeight="27.0" prefWidth="101.0" style="-fx-border-color: #d4d4d4; -fx-background-color: #edebeb; -fx-border-radius: 5;" text="Create" textFill="#686767">
-                                             <VBox.margin>
-                                                <Insets left="28.0" top="5.0" />
-                                             </VBox.margin>
-                                          </Button>
-                                          <Button fx:id="changePersonAction" minWidth="-Infinity" mnemonicParsing="false" prefHeight="27.0" prefWidth="101.0" style="-fx-border-color: #d4d4d4; -fx-background-color: #edebeb; -fx-border-radius: 5;" text="Edit" textFill="#686767">
-                                             <VBox.margin>
-                                                <Insets left="28.0" top="10.0" />
-                                             </VBox.margin>
-                                          </Button>
-                                          <Button fx:id="deletePersonAction" minWidth="-Infinity" mnemonicParsing="false" prefHeight="27.0" prefWidth="101.0" style="-fx-border-color: #d4d4d4; -fx-background-color: #edebeb; -fx-border-radius: 5;" text="Delete" textFill="#686767">
-                                             <VBox.margin>
-                                                <Insets left="28.0" top="10.0" />
-                                             </VBox.margin>
-                                          </Button>
-                                       </children>
-                                    </VBox>
-                                 </children>
-                              </HBox>
-                           </children>
-                        </HBox>
-                        <Label layoutX="114.0" layoutY="42.0" prefHeight="25.0" prefWidth="149.0" style="-fx-background-color: #edebeb;" text="Art" textFill="#686767" />
-                        <Label layoutX="114.0" layoutY="96.0" prefHeight="25.0" prefWidth="149.0" style="-fx-background-color: #edebeb;" text="Petr" textFill="#686767" />
-                     </children>
-                  </AnchorPane>
+                        <AnchorPane prefHeight="331.0" prefWidth="300.0" style="-fx-background-color: #77a19f;">
+                            <children>
+                                <Text fill="#b3dcd8" layoutX="14.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name">
+                                    <font>
+                                        <Font size="9.0" />
+                                    </font>
+                                </Text>
+                                <Text fill="#b3dcd8" layoutX="90.0" layoutY="129.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Внести изменения">
+                                    <font>
+                                        <Font size="15.0" />
+                                    </font>
+                                </Text>
+                                <HBox layoutX="-2.0" layoutY="135.0" prefHeight="195.0" prefWidth="309.0">
+                                    <children>
+                                        <HBox prefHeight="205.0" prefWidth="309.0">
+                                            <children>
+                                                <VBox prefHeight="188.0" prefWidth="155.0">
+                                                    <children>
+                                                        <BorderPane prefHeight="27.0" prefWidth="155.0">
+                                                            <center>
+                                                                <Text fill="#b3dcd8" strokeType="OUTSIDE" strokeWidth="0.0" text="Good" BorderPane.alignment="CENTER" />
+                                                            </center>
+                                                        </BorderPane>
+                                                        <Button fx:id="createGoodAction" minWidth="-Infinity" mnemonicParsing="false" prefHeight="27.0" prefWidth="101.0" style="-fx-border-color: #d4d4d4; -fx-background-color: #edebeb; -fx-border-radius: 5;" text="Create" textFill="#686767">
+                                                            <VBox.margin>
+                                                                <Insets left="28.0" top="20.0" />
+                                                            </VBox.margin>
+                                                        </Button>
+                                                        <Button fx:id="changeGoodAction" minWidth="-Infinity" mnemonicParsing="false" prefHeight="27.0" prefWidth="101.0" style="-fx-border-color: #d4d4d4; -fx-background-color: #edebeb; -fx-border-radius: 5;" text="Edit" textFill="#686767">
+                                                            <VBox.margin>
+                                                                <Insets left="28.0" top="20.0" />
+                                                            </VBox.margin>
+                                                        </Button>
+                                                        <Button fx:id="deleteGoodAction" minWidth="-Infinity" mnemonicParsing="false" prefHeight="27.0" prefWidth="101.0" style="-fx-border-color: #d4d4d4; -fx-background-color: #edebeb; -fx-border-radius: 5;" text="Delete" textFill="#686767">
+                                                            <VBox.margin>
+                                                                <Insets left="28.0" top="20.0" />
+                                                            </VBox.margin>
+                                                        </Button>
+                                                    </children>
+                                                </VBox>
+                                                <VBox prefHeight="149.0" prefWidth="155.0">
+                                                    <children>
+                                                        <BorderPane prefHeight="27.0" prefWidth="155.0">
+                                                            <center>
+                                                                <Text fill="#b3dcd8" strokeType="OUTSIDE" strokeWidth="0.0" text="Staff" BorderPane.alignment="CENTER" />
+                                                            </center>
+                                                        </BorderPane>
+                                                        <Button fx:id="createPersonAction" minWidth="-Infinity" mnemonicParsing="false" prefHeight="27.0" prefWidth="101.0" style="-fx-border-color: #d4d4d4; -fx-background-color: #edebeb; -fx-border-radius: 5;" text="Create" textFill="#686767">
+                                                            <VBox.margin>
+                                                                <Insets left="28.0" top="20.0" />
+                                                            </VBox.margin>
+                                                        </Button>
+                                                        <Button fx:id="changePersonAction" minWidth="-Infinity" mnemonicParsing="false" prefHeight="27.0" prefWidth="101.0" style="-fx-border-color: #d4d4d4; -fx-background-color: #edebeb; -fx-border-radius: 5;" text="Edit" textFill="#686767">
+                                                            <VBox.margin>
+                                                                <Insets left="28.0" top="20.0" />
+                                                            </VBox.margin>
+                                                        </Button>
+                                                        <Button fx:id="deletePersonAction" minWidth="-Infinity" mnemonicParsing="false" prefHeight="27.0" prefWidth="101.0" style="-fx-border-color: #d4d4d4; -fx-background-color: #edebeb; -fx-border-radius: 5;" text="Delete" textFill="#686767">
+                                                            <VBox.margin>
+                                                                <Insets left="28.0" top="20.0" />
+                                                            </VBox.margin>
+                                                        </Button>
+                                                    </children>
+                                                </VBox>
+                                            </children>
+                                        </HBox>
+                                    </children>
+                                </HBox>
+                                <Label fx:id="nameManager" layoutX="15.0" layoutY="53.0" prefHeight="25.0" prefWidth="149.0" style="-fx-background-color: #edebeb;" text="" textFill="#686767" />
+                            </children>
+                        </AnchorPane>
                     </children>
                 </AnchorPane>
             </children></AnchorPane>

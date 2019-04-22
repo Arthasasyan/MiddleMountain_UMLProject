@@ -16,6 +16,7 @@ import javafx.stage.Stage;;
 
 public class loginController {
     private Service service;
+    public static String accountName = "";
 
     @FXML
     private Button enterAuthAction;
@@ -61,6 +62,7 @@ public class loginController {
                         stage.setScene(new Scene(root));
                         stage.show();
                     }
+                    accountName = employee.getName();
                 } else System.out.println("Error");
             } catch (Exception e) {
                 e.printStackTrace();
