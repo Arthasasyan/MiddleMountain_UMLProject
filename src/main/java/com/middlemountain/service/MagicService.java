@@ -102,7 +102,7 @@ public class MagicService implements Service {
   public void updateGood(Good good) throws Exception {
     dao.updateTable("Good", good.getId(), toListString(good));
   }
-
+S
   public void updateOrder(Order order) throws Exception {
     dao.updateTable("Order", order.getId(), toListString(order));
     for(Good good : order.getGoods()) {
