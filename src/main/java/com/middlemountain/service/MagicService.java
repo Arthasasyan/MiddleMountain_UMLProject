@@ -10,6 +10,7 @@ import com.middlemountain.model.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
 
 public class MagicService implements Service {
   private DatabaseDAO dao;
@@ -53,7 +54,14 @@ public class MagicService implements Service {
             .setAssignedEmployee(this.getEmployee(Integer.parseInt(orderInDatabase.get(3))));
     Address address = new Address(orderInDatabase.get(4), orderInDatabase.get(5), orderInDatabase.get(6));
     order.setShippingAddress(address);
-    //TODO foreign keys
+    Set<List<String>> goods = dao.getOrderGoods(order.getId());
+    for(List<String> list : goods) { //adding all goods to order
+      order.addGood(getGood(Integer.parseInt(list.get(2))));
+    }
+    Set<List<String>> enchantmentJobs = dao.getOrderEnchantmentJobs(order.getId());
+    for(List<String> list : enchantmentJobs) {
+      order.addEnchantmentJob(getEnchantmentJob(Integer.parseInt(list.get(2))));
+    }
     return order;
   }
 
@@ -66,7 +74,14 @@ public class MagicService implements Service {
             .setAssignedEmployee(this.getEmployee(Integer.parseInt(orderInDatabase.get(3))));
     Address address = new Address(orderInDatabase.get(4), orderInDatabase.get(5), orderInDatabase.get(6));
     order.setShippingAddress(address);
-    //TODO foreign keys
+    Set<List<String>> goods = dao.getOrderGoods(order.getId());
+    for(List<String> list : goods) { //adding all goods to order
+      order.addGood(getGood(Integer.parseInt(list.get(2))));
+    }
+    Set<List<String>> enchantmentJobs = dao.getOrderEnchantmentJobs(order.getId());
+    for(List<String> list : enchantmentJobs) {
+      order.addEnchantmentJob(getEnchantmentJob(Integer.parseInt(list.get(2))));
+    }
     return order;
   }
 
@@ -92,7 +107,7 @@ public class MagicService implements Service {
 
   public void shipOrder(Order order) throws Exception {
     if(order.getStatus().equals(OrderStatus.SHIPPING)){
-      System.out.println("Sipping " + order.toString());
+      System.err.println("Sipping " + order.toString());
     }
     else {
       throw new Exception("Order status must be SHIPPING");
@@ -114,47 +129,91 @@ public class MagicService implements Service {
   }
 
   public void deleteGood(Good good) throws Exception {
-
+    dao.deleteFromTable("Good", good.getId());
   }
 
   public void deleteEmployee(Employee employee) throws Exception {
-
+    dao.deleteFromTable("Employee", employee.getId());
   }
 
   public CreationJob getCreationJob(Integer id) throws Exception {
-    return null;
+    List<String> creationJobInDatabase = dao.getCreationJob(id);
+    CreationJob creationJob = new CreationJob()
+            .setId(Integer.parseInt(creationJobInDatabase.get(0)))
+            .setGood(getGood(Integer.parseInt(creationJobInDatabase.get(1))))
+            .setEmployee(getEmployee(Integer.parseInt(creationJobInDatabase.get(2))))
+            .setAmountRemaining(Integer.parseInt(creationJobInDatabase.get(3)));
+    return creationJob;
   }
 
   public void updateCreationJob(CreationJob creationJob) throws Exception {
-
+    dao.updateTable("CreationJob", creationJob.getId(), toListString(creationJob));
   }
 
   public List<Order> getOrders(Employee employee) throws Exception {
-    return null;
+    Set<List<String>> ordersInDatabase = dao.getOrders(employee.getId());
+    List<Order> orders = new ArrayList<>();
+    for(List<String> list : ordersInDatabase) {
+      orders.add(orderFromListString(list));
+    }
+    return orders;
   }
 
   public List<CreationJob> getCreationJobs(Employee employee) throws Exception {
-    return null;
+    Set<List<String>> creationJobsInDatabase = dao.getCreationJobs(employee.getId());
+    List<CreationJob> creationJobs = new ArrayList<>();
+    for(List<String> list : creationJobsInDatabase) {
+      creationJobs.add(creationJobFromListString(list));
+    }
+    return creationJobs;
   }
 
   public Employee login(String username, String password) throws Exception {
-    return null;
+    try {
+      List<String> employeeInDatabase = dao.getEmployee(username, password);
+      Employee employee = new Employee()
+              .setId(Integer.parseInt(employeeInDatabase.get(0)))
+              .setName(employeeInDatabase.get(1))
+              .setSalary(Float.parseFloat(employeeInDatabase.get(2)))
+              .setPermission(Permission.fromInteger(employeeInDatabase.get(3)));
+      return employee;
+    } catch (Exception e) {
+      throw new Exception("Incorrect username or password");
+    }
   }
 
   public void createOrder(Order order) throws Exception {
-
+    dao.insertInto("Order", toListString(order));
+    for(EnchantmentJob enchantmentJob : order.getEnchantmentJobs()) {
+      dao.insertInto("EnchantmentJob", toListString(enchantmentJob));
+    }
   }
 
   public String createEmployee(Employee employee, String username) throws Exception {
-    return null;
+    try {
+     Employee existent = getEmployee(username); //if employee does not exist, exception is thrown
+     throw new Exception(username + " already registered");
+    } catch (Exception e) {
+      String password = generatePassword();
+      Integer id = dao.insertInto("Employee", toListString(employee, username, password));
+      employee.setId(id);
+      return password;
+    }
   }
 
   public void createGood(Good good) throws Exception {
-
+    try {
+      Good existent = getGood(good.getName()); //if good does not exist, exception will be thrown
+      throw new Exception("Good with name " + good.getName() + " already exists with ID: " + existent.getId());
+    } catch (Exception e) {
+      Integer id = dao.insertInto("Good",toListString(good));
+      good.setId(id);
+    }
   }
 
   public void createCreationJob(CreationJob creationJob) throws Exception {
-
+    Integer id =dao.insertInto("CreationJob", toListString(creationJob));
+    creationJob.setId(id);
   }
 
   private String generatePassword() {
@@ -166,6 +225,19 @@ public class MagicService implements Service {
       password+=letters.charAt(rng.nextInt(letters.length()));
     }
     return password;
+  }
+
+  private EnchantmentJob getEnchantmentJob(Integer id) throws Exception {
+    List<String> enchantmentJobInDataBase = dao.getEnchantmentJob(id);
+    EnchantmentJob enchantmentJob = new EnchantmentJob()
+            .setId(Integer.parseInt(enchantmentJobInDataBase.get(0)))
+            .setMagicType(MagicType.fromInteger(enchantmentJobInDataBase.get(2)))
+            .setDescription(enchantmentJobInDataBase.get(3))
+            .setCompleted(Boolean.getBoolean(enchantmentJobInDataBase.get(4)));
+    List<String> itemInDatabase = dao.getItem(Integer.parseInt(enchantmentJobInDataBase.get(1)));
+    Item item = new Item().setId(Integer.parseInt(itemInDatabase.get(0))).setDescription(itemInDatabase.get(1));
+    enchantmentJob.setItem(item);
+    return enchantmentJob;
   }
 
   private List<String> toListString(Good good)
@@ -191,5 +263,21 @@ public class MagicService implements Service {
 
   private List<String> toListString(EnchantmentJob enchantmentJob) {
   return null; //TODO toListString
+  }
+
+  private List<String> toListString(CreationJob creationJob) {
+    return null; //TODO toListString
+  }
+
+  private List<String> toListString(Employee employee, String username, String password) {
+    return null; //TODO toListString
+  }
+
+  private Order orderFromListString(List<String> list) {
+    return null; //TODO fromList<String>
+  }
+
+  private CreationJob creationJobFromListString(List<String> list) {
+    return null; //TODO fromList<String>
   }
 }
