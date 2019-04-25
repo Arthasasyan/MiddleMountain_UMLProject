@@ -20,4 +20,6 @@ public interface DatabaseDAO {
   void updateTable(String table, Integer id, List<String> payload) throws Exception;
   void deleteFromTable(String table, Integer id) throws Exception;
   Integer insertInto(String table, List<String> payload) throws Exception;
+  Set<List<String>> getOrderGoods(Integer orderID) throws Exception;
+  Set<List<String>> getOrderEnchantmentJobs(Integer orderID) throws Exception;
 }

@@ -144,4 +144,16 @@ public class MsSQLDAO implements DatabaseDAO {
     statement.executeQuery("insert into " + table + " values(" + val + ")");
     return Integer.parseInt(getListOfString("select * from " + table + " where " + selectWhere).get(0));
   }
+
+  @Override
+  public Set<List<String>> getOrderGoods(Integer orderID) throws Exception {
+    return null;
+  }
+
+  @Override
+  public Set<List<String>> getOrderEnchantmentJobs(Integer orderID) throws Exception {
+    return null;
+  }
+
+
 }
