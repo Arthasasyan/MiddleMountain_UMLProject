@@ -100,14 +100,14 @@ public class MsSQLDAO implements DatabaseDAO {
     return getListOfString(query);
   }
 
-  public Set<List<String>> getCreationJobs(Integer employee) throws Exception { //TODO change to employeeID
+  public Set<List<String>> getCreationJobs(Integer employeeID) throws Exception {
     String query = "Select * from CreationJobs inner join\n" +
-            "Employee on CreationJobs.EmployeeID = Employee.EmployeeID where Employee.Name = '" + employee + "' ";
+            "Employee on CreationJobs.EmployeeID = Employee.EmployeeID where Employee.EmployeeID = " + employeeID;
     return executeQuery(query);
   }
-  public Set<List<String>> getOrders(Integer employee) throws Exception { //TODO change to employeeID
+  public Set<List<String>> getOrders(Integer employeeID) throws Exception {
     String query = "Select * from Order inner join\n" +
-            "Employee on Order.AssignedEmployeeID = Employee.EmployeeID where Employee.Name = '" + employee + "' ";
+            "Employee on Order.AssignedEmployeeID = Employee.EmployeeID where Employee.EmployeeID = '" + employeeID;
     return executeQuery(query);
   }
 
@@ -145,14 +145,14 @@ public class MsSQLDAO implements DatabaseDAO {
     return Integer.parseInt(getListOfString("select * from " + table + " where " + selectWhere).get(0));
   }
 
-  @Override
   public Set<List<String>> getOrderGoods(Integer orderID) throws Exception {
-    return null;
+    String query = "Select * from OrderGood where OrderID = " + orderID;
+    return executeQuery(query);
   }
 
-  @Override
   public Set<List<String>> getOrderEnchantmentJobs(Integer orderID) throws Exception {
-    return null;
+    String query = "Select * from OrderEnchantmentJob where OrderID = " + orderID;
+    return executeQuery(query);
   }
 
 
