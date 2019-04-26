@@ -262,22 +262,50 @@ public class MagicService implements Service {
   }
 
   private List<String> toListString(EnchantmentJob enchantmentJob) {
-  return null; //TODO toListString
+    List<String> result = new ArrayList<>();
+    result.add(enchantmentJob.getItem().getId().toString());
+    result.add(MagicType.toInteger(enchantmentJob.getMagicType()).toString());
+    result.add(enchantmentJob.getDescription());
+    result.add(enchantmentJob.getCompleted().toString());
+    return result;
   }
 
   private List<String> toListString(CreationJob creationJob) {
-    return null; //TODO toListString
+    List<String> result = new ArrayList<>();
+    result.add(creationJob.getGood().getId().toString());
+    result.add(creationJob.getEmployee().getId().toString());
+    result.add(creationJob.getAmountRemaining().toString());
+    return result;
   }
 
   private List<String> toListString(Employee employee, String username, String password) {
-    return null; //TODO toListString
+    List<String> result = new ArrayList<>();
+    result.add(employee.getName());
+    result.add(employee.getSalary().toString());
+    result.add(Permission.toInteger(employee.getPermission()).toString());
+    result.add(username);
+    result.add(password);
+    return result;
   }
 
   private Order orderFromListString(List<String> list) {
-    return null; //TODO fromList<String>
+    Order order = new Order();
+    Employee employee = new Employee();
+    Address address = new Address(list.get(3), list.get(4), list.get(5));
+    order.setClientName(list.get(0));
+    order.setStatus(OrderStatus.fromInteger(list.get(1)));
+    order.setAssignedEmployee(employee.setId(Integer.parseInt(list.get(2))));
+    order.setShippingAddress(address);
+    return order; //TODO fromList<String>
   }
 
   private CreationJob creationJobFromListString(List<String> list) {
-    return null; //TODO fromList<String>
+    CreationJob creationJob = new CreationJob();
+    Good good = new Good();
+    Employee employee = new Employee();
+    creationJob.setGood(good.setId(Integer.parseInt(list.get(0))));
+    creationJob.setEmployee(employee.setId(Integer.parseInt(list.get(1))));
+    creationJob.setAmountRemaining(Integer.parseInt(list.get(2)));
+    return creationJob; //TODO fromList<String>
   }
 }
