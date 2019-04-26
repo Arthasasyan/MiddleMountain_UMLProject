@@ -47,42 +47,12 @@ public class MagicService implements Service {
 
   public Order getOrder(Integer id) throws Exception {
     List<String> orderInDatabase = dao.getOrder(id);
-    Order order = new Order()
-            .setId(Integer.parseInt(orderInDatabase.get(0)))
-            .setClientName(orderInDatabase.get(1))
-            .setStatus(OrderStatus.fromInteger(orderInDatabase.get(2)))
-            .setAssignedEmployee(this.getEmployee(Integer.parseInt(orderInDatabase.get(3))));
-    Address address = new Address(orderInDatabase.get(4), orderInDatabase.get(5), orderInDatabase.get(6));
-    order.setShippingAddress(address);
-    Set<List<String>> goods = dao.getOrderGoods(order.getId());
-    for(List<String> list : goods) { //adding all goods to order
-      order.addGood(getGood(Integer.parseInt(list.get(2))));
-    }
-    Set<List<String>> enchantmentJobs = dao.getOrderEnchantmentJobs(order.getId());
-    for(List<String> list : enchantmentJobs) {
-      order.addEnchantmentJob(getEnchantmentJob(Integer.parseInt(list.get(2))));
-    }
-    return order;
+    return orderFromListString(orderInDatabase);
   }
 
   public Order getOrder(String clientName) throws Exception {
     List<String> orderInDatabase = dao.getOrder(clientName);
-    Order order = new Order()
-            .setId(Integer.parseInt(orderInDatabase.get(0)))
-            .setClientName(orderInDatabase.get(1))
-            .setStatus(OrderStatus.fromInteger(orderInDatabase.get(2)))
-            .setAssignedEmployee(this.getEmployee(Integer.parseInt(orderInDatabase.get(3))));
-    Address address = new Address(orderInDatabase.get(4), orderInDatabase.get(5), orderInDatabase.get(6));
-    order.setShippingAddress(address);
-    Set<List<String>> goods = dao.getOrderGoods(order.getId());
-    for(List<String> list : goods) { //adding all goods to order
-      order.addGood(getGood(Integer.parseInt(list.get(2))));
-    }
-    Set<List<String>> enchantmentJobs = dao.getOrderEnchantmentJobs(order.getId());
-    for(List<String> list : enchantmentJobs) {
-      order.addEnchantmentJob(getEnchantmentJob(Integer.parseInt(list.get(2))));
-    }
-    return order;
+    return orderFromListString(orderInDatabase);
   }
 
   public Employee getEmployee(Integer id) throws Exception {
@@ -138,12 +108,7 @@ public class MagicService implements Service {
 
   public CreationJob getCreationJob(Integer id) throws Exception {
     List<String> creationJobInDatabase = dao.getCreationJob(id);
-    CreationJob creationJob = new CreationJob()
-            .setId(Integer.parseInt(creationJobInDatabase.get(0)))
-            .setGood(getGood(Integer.parseInt(creationJobInDatabase.get(1))))
-            .setEmployee(getEmployee(Integer.parseInt(creationJobInDatabase.get(2))))
-            .setAmountRemaining(Integer.parseInt(creationJobInDatabase.get(3)));
-    return creationJob;
+    return creationJobFromListString(creationJobInDatabase);
   }
 
   public void updateCreationJob(CreationJob creationJob) throws Exception {
@@ -185,6 +150,7 @@ public class MagicService implements Service {
   public void createOrder(Order order) throws Exception {
     dao.insertInto("Order", toListString(order));
     for(EnchantmentJob enchantmentJob : order.getEnchantmentJobs()) {
+      dao.insertInto("Item", toListString(enchantmentJob.getItem()));
       dao.insertInto("EnchantmentJob", toListString(enchantmentJob));
     }
   }
@@ -240,24 +206,28 @@ public class MagicService implements Service {
     return enchantmentJob;
   }
 
+  private String encloseInQuotes(String str) {
+    return "'" + str + "'";
+  }
+
   private List<String> toListString(Good good)
   {
     List<String> result = new ArrayList<>();
     result.add(MagicType.toInteger(good.getMagicType()).toString());
-    result.add("'"+good.getName()+"'");
-    result.add("'"+good.getDescription()+"'");
+    result.add(encloseInQuotes(good.getName()));
+    result.add(encloseInQuotes(good.getDescription()));
     result.add(good.getPrice().toString());
     return result;
   }
 
   private List<String> toListString(Order order) {
     List<String> result = new ArrayList<>();
-    result.add("'" + order.getClientName() + "'");
+    result.add(encloseInQuotes(order.getClientName()));
     result.add(OrderStatus.toInteger(order.getStatus()).toString());
     result.add(order.getAssignedEmployee().getId().toString());
-    result.add(order.getShippingAddress().getCountry());
-    result.add(order.getShippingAddress().getCity());
-    result.add(order.getShippingAddress().getAddress());
+    result.add(encloseInQuotes(order.getShippingAddress().getCountry()));
+    result.add(encloseInQuotes(order.getShippingAddress().getCity()));
+    result.add(encloseInQuotes(order.getShippingAddress().getAddress()));
     return result;
   }
 
@@ -265,7 +235,7 @@ public class MagicService implements Service {
     List<String> result = new ArrayList<>();
     result.add(enchantmentJob.getItem().getId().toString());
     result.add(MagicType.toInteger(enchantmentJob.getMagicType()).toString());
-    result.add(enchantmentJob.getDescription());
+    result.add(encloseInQuotes(enchantmentJob.getDescription()));
     result.add(enchantmentJob.getCompleted().toString());
     return result;
   }
@@ -280,23 +250,38 @@ public class MagicService implements Service {
 
   private List<String> toListString(Employee employee, String username, String password) {
     List<String> result = new ArrayList<>();
-    result.add(employee.getName());
+    result.add(encloseInQuotes(employee.getName()));
     result.add(employee.getSalary().toString());
     result.add(Permission.toInteger(employee.getPermission()).toString());
-    result.add(username);
-    result.add(password);
+    result.add(encloseInQuotes(username));
+    result.add(encloseInQuotes(password));
     return result;
   }
 
-  private Order orderFromListString(List<String> list) {
-    Order order = new Order();
-    Employee employee = new Employee();
-    Address address = new Address(list.get(3), list.get(4), list.get(5));
-    order.setClientName(list.get(0));
-    order.setStatus(OrderStatus.fromInteger(list.get(1)));
-    order.setAssignedEmployee(employee.setId(Integer.parseInt(list.get(2))));
+  private List<String> toListString(Item item) {
+    List<String> result = new ArrayList<>();
+    result.add(item.getId().toString());
+    result.add(encloseInQuotes(item.getDescription()));
+    return result;
+  }
+
+  private Order orderFromListString(List<String> orderInDatabase) throws Exception {
+    Order order = new Order()
+            .setId(Integer.parseInt(orderInDatabase.get(0)))
+            .setClientName(orderInDatabase.get(1))
+            .setStatus(OrderStatus.fromInteger(orderInDatabase.get(2)))
+            .setAssignedEmployee(this.getEmployee(Integer.parseInt(orderInDatabase.get(3))));
+    Address address = new Address(orderInDatabase.get(4), orderInDatabase.get(5), orderInDatabase.get(6));
     order.setShippingAddress(address);
-    return order; //TODO fromList<String>
+    Set<List<String>> goods = dao.getOrderGoods(order.getId());
+    for(List<String> list : goods) { //adding all goods to order
+      order.addGood(getGood(Integer.parseInt(list.get(2))));
+    }
+    Set<List<String>> enchantmentJobs = dao.getOrderEnchantmentJobs(order.getId());
+    for(List<String> list : enchantmentJobs) {
+      order.addEnchantmentJob(getEnchantmentJob(Integer.parseInt(list.get(2))));
+    }
+    return order;
   }
 
   private CreationJob creationJobFromListString(List<String> list) {
@@ -306,6 +291,6 @@ public class MagicService implements Service {
     creationJob.setGood(good.setId(Integer.parseInt(list.get(0))));
     creationJob.setEmployee(employee.setId(Integer.parseInt(list.get(1))));
     creationJob.setAmountRemaining(Integer.parseInt(list.get(2)));
-    return creationJob; //TODO fromList<String>
+    return creationJob;
   }
 }
