@@ -51,7 +51,7 @@ public class MsSQLDAO implements DatabaseDAO {
   }
 
   public List<String> getGood(Integer id) throws Exception {
-    String query = "Select * from Good where GoodId = " + id;
+    String query = "Select * from Good where GoodID = " + id;
     return getListOfString(query);
   }
 
@@ -101,8 +101,8 @@ public class MsSQLDAO implements DatabaseDAO {
   }
 
   public Set<List<String>> getCreationJobs(Integer employeeID) throws Exception {
-    String query = "Select * from CreationJobs inner join\n" +
-            "Employee on CreationJobs.EmployeeID = Employee.EmployeeID where Employee.EmployeeID = " + employeeID;
+    String query = "Select * from CreationJob inner join\n" +
+            "Employee on CreationJob.EmployeeID = Employee.EmployeeID where Employee.EmployeeID = " + employeeID;
     return executeQuery(query);
   }
   public Set<List<String>> getOrders(Integer employeeID) throws Exception {
