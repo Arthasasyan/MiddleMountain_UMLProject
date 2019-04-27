@@ -152,6 +152,16 @@ public class MagicService implements Service {
     for(EnchantmentJob enchantmentJob : order.getEnchantmentJobs()) {
       dao.insertInto("Item", toListString(enchantmentJob.getItem()));
       dao.insertInto("EnchantmentJob", toListString(enchantmentJob));
+      List<String> res = new ArrayList<>();
+      res.add(order.getId().toString());
+      res.add(enchantmentJob.getId().toString());
+      dao.insertInto("OrderEnchantmentJob", res);
+    }
+    for(Good good : order.getGoods()){
+      List<String> res = new ArrayList<>();
+      res.add(good.getId().toString());
+      res.add(order.getId().toString());
+      dao.insertInto("OrderGood", res);
     }
   }
 
@@ -275,7 +285,7 @@ public class MagicService implements Service {
     order.setShippingAddress(address);
     Set<List<String>> goods = dao.getOrderGoods(order.getId());
     for(List<String> list : goods) { //adding all goods to order
-      order.addGood(getGood(Integer.parseInt(list.get(2))));
+      order.addGood(getGood(Integer.parseInt(list.get(1))));
     }
     Set<List<String>> enchantmentJobs = dao.getOrderEnchantmentJobs(order.getId());
     for(List<String> list : enchantmentJobs) {
