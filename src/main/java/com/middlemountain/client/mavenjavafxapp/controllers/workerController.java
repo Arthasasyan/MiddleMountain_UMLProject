@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 public class workerController {
@@ -22,10 +23,17 @@ public class workerController {
     private Button changePersonAction;
 
     @FXML
+    private Label nameWorker;
+
+    @FXML
+    private Label infoWorker;
+
+    @FXML
     private Button exitButtonAction;
 
     @FXML
     void initialize() {
+        nameWorker.setText(loginController.employee.getName());
         createOrderAction.setOnAction(event -> {
 
         });

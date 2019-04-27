@@ -29,10 +29,20 @@ public class Controller {
                 stage.initOwner(((Node)event.getSource()).getScene().getWindow());
                 stage.show();
             } catch (IOException e) {
-                System.out.println("Error");
+                e.printStackTrace();
             }
         });
+    }
 
+    public void cancelButton(Button button) {
+        button.setOnAction(event -> {
+            try {
+                Stage stage = (Stage)button.getScene().getWindow();
+                stage.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
     }
 
 }

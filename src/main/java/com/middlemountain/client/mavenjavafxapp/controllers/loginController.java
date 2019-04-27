@@ -3,20 +3,24 @@ package com.middlemountain.client.mavenjavafxapp.controllers;
 import com.middlemountain.client.mavenjavafxapp.MainApp;
 import com.middlemountain.enums.Permission;
 import com.middlemountain.model.Employee;
+import com.middlemountain.service.MagicService;
 import com.middlemountain.service.Service;
 import com.middlemountain.service.TestService;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Modality;
 import javafx.stage.Stage;;
 
 public class loginController {
     private Service service;
     public static String accountName = "";
+    public static Employee employee =  null;
 
     @FXML
     private Button enterAuthAction;
@@ -31,11 +35,10 @@ public class loginController {
     private PasswordField passwordInputAction;
 
     @FXML
-    void initialize() {
-        service = new TestService();
+    void initialize() throws Exception {
+        service = new MagicService();
         enterAuthAction.setOnAction(event -> {
             try {
-                Employee employee =  null;
                 Stage stage = new Stage();
                 Stage oldStage = (Stage)enterAuthAction.getScene().getWindow();
                 oldStage.hide();
@@ -46,8 +49,13 @@ public class loginController {
                     try  {
                         employee = service.login(loginText, passwordText);
                     } catch (Exception e) {
-                        System.out.println(e.getMessage());
-                        throw e;
+                        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("warningAuth.fxml"));
+                        stage.setTitle("Warning");
+                        stage.setResizable(false);
+                        stage.setScene(new Scene(root));
+                        stage.initModality(Modality.WINDOW_MODAL);
+                        stage.initOwner(((Node)event.getSource()).getScene().getWindow());
+                        stage.show();
                     }
                     if( service.login(loginText, passwordText).getPermission().equals(Permission.EMPLOYEE)) {
                         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("worker.fxml"));
@@ -63,19 +71,15 @@ public class loginController {
                         stage.show();
                     }
                     accountName = employee.getName();
-                } else System.out.println("Error");
+                }
             } catch (Exception e) {
-                e.printStackTrace();
+                System.out.println("Error");
             }
         });
 
         cancelAuthAction.setOnAction(event -> {
-            try {
-                Stage stage = (Stage)cancelAuthAction.getScene().getWindow();
-                stage.close();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            Controller controller = new Controller();
+            controller.cancelButton(cancelAuthAction);
         });
     }
 
