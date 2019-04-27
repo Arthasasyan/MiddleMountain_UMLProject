@@ -203,6 +203,11 @@ public class MagicService implements Service {
     return password;
   }
 
+  @Override
+  public void updateEmployee(Employee employee) throws Exception{
+    dao.updateTable("Employee", employee.getId(), toListString(employee));
+  }
+
   private EnchantmentJob getEnchantmentJob(Integer id) throws Exception {
     List<String> enchantmentJobInDataBase = dao.getEnchantmentJob(id);
     EnchantmentJob enchantmentJob = new EnchantmentJob()
@@ -220,9 +225,20 @@ public class MagicService implements Service {
     return "'" + str + "'";
   }
 
+
+  private List<String> toListString(Employee employee) {
+    List<String> result = new ArrayList<>();
+    result.add(employee.getId().toString());
+    result.add(encloseInQuotes(employee.getName()));
+    result.add(employee.getSalary().toString());
+    result.add(Permission.toInteger(employee.getPermission()).toString());
+    return result;
+  }
+
   private List<String> toListString(Good good)
   {
     List<String> result = new ArrayList<>();
+    result.add(good.getId().toString());
     result.add(MagicType.toInteger(good.getMagicType()).toString());
     result.add(encloseInQuotes(good.getName()));
     result.add(encloseInQuotes(good.getDescription()));
@@ -232,6 +248,7 @@ public class MagicService implements Service {
 
   private List<String> toListString(Order order) {
     List<String> result = new ArrayList<>();
+    result.add(order.getId().toString());
     result.add(encloseInQuotes(order.getClientName()));
     result.add(OrderStatus.toInteger(order.getStatus()).toString());
     result.add(order.getAssignedEmployee().getId().toString());
@@ -243,6 +260,7 @@ public class MagicService implements Service {
 
   private List<String> toListString(EnchantmentJob enchantmentJob) {
     List<String> result = new ArrayList<>();
+    result.add(enchantmentJob.getId().toString());
     result.add(enchantmentJob.getItem().getId().toString());
     result.add(MagicType.toInteger(enchantmentJob.getMagicType()).toString());
     result.add(encloseInQuotes(enchantmentJob.getDescription()));
@@ -260,6 +278,7 @@ public class MagicService implements Service {
 
   private List<String> toListString(Employee employee, String username, String password) {
     List<String> result = new ArrayList<>();
+    result.add(employee.getId().toString());
     result.add(encloseInQuotes(employee.getName()));
     result.add(employee.getSalary().toString());
     result.add(Permission.toInteger(employee.getPermission()).toString());

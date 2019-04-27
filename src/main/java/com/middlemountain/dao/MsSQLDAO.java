@@ -116,6 +116,9 @@ public class MsSQLDAO implements DatabaseDAO {
     String query = "update " + table + " set ";
     for(int i = 2; i <= rsmd.getColumnCount(); i++)
     {
+      if(i == payload.size() + 1) {
+        break;
+      }
       query += rsmd.getColumnName(i)+" = "+payload.get(i - 1) + ", ";
     }
     query = query.substring(0, query.length() - 2);
@@ -125,7 +128,7 @@ public class MsSQLDAO implements DatabaseDAO {
 
   public void deleteFromTable(String table, Integer id) throws Exception {
     ResultSetMetaData rsmd = conn.createStatement().executeQuery("select * from " + table).getMetaData();
-    String query = "delete from " + table + "where " + rsmd.getColumnName(1) + " = " + id;
+    String query = "delete from " + table + " where " + rsmd.getColumnName(1) + " = " + id;
     conn.prepareStatement(query).execute();
   }
 
@@ -134,13 +137,13 @@ public class MsSQLDAO implements DatabaseDAO {
     String val = "";
     String selectWhere = "";
     ResultSetMetaData rsmd = conn.createStatement().executeQuery("select * from " + table).getMetaData();
-    for (int i = 2; i < rsmd.getColumnCount(); i++)
+    for (int i = 2; i <= rsmd.getColumnCount(); i++)
     {
-      val += payload.get(i - 2) + ",";
-      selectWhere += rsmd.getColumnName(i) + " = " + payload.get(i - 2) + ",";
+      val += payload.get(i - 1) + ", ";
+      selectWhere += rsmd.getColumnName(i) + " = " + payload.get(i - 1) + " and ";
     }
-    val = val.substring(0, val.length() - 1); //removing last coma
-    selectWhere = selectWhere.substring(0, selectWhere.length() - 1);
+    val = val.substring(0, val.length() - 2); //removing last coma
+    selectWhere = selectWhere.substring(0, selectWhere.length() - 5);
     String query = "insert into [" + table + "] values(" + val + ")";
     conn.prepareStatement(query).execute();
     //statement.executeQuery("insert into " + table + " values(" + val + ")");

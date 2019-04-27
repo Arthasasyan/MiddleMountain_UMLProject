@@ -14,7 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 @Accessors(chain = true)
 public class Order {
-  private Integer id;
+  private Integer id = 0;
   private List<EnchantmentJob> enchantmentJobs;
   private List<Good> goods;
   private String clientName;

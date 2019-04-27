@@ -11,7 +11,7 @@ import lombok.experimental.Accessors;
 @AllArgsConstructor
 @Accessors(chain = true)
 public class Employee {
-  private Integer id;
+  private Integer id = 0;
   private String name;
   private Float salary;
   private Permission permission;

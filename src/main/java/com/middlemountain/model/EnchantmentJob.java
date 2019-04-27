@@ -12,7 +12,7 @@ import lombok.experimental.Accessors;
 @AllArgsConstructor
 @Accessors(chain = true)
 public class EnchantmentJob {
-  private Integer id;
+  private Integer id = 0;
   private Item item;
   private MagicType magicType;
   private String description;

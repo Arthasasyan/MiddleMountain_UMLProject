@@ -10,6 +10,6 @@ import lombok.experimental.Accessors;
 @NoArgsConstructor
 @Accessors(chain = true)
 public class Item {
-  private Integer id;
+  private Integer id = 0;
   private String description;
 }

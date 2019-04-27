@@ -2,3 +2,5 @@
 target
 UML/*.bak*
 database.properties
+MiddleMountain.iml
+src/main/java/com/middlemountain/service/TestService.java

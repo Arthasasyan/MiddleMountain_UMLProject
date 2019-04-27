@@ -10,7 +10,7 @@ import lombok.experimental.Accessors;
 @AllArgsConstructor
 @Accessors(chain = true)
 public class CreationJob {
-  private Integer id;
+  private Integer id = 0;
   private Good good;
   private Employee employee;
   private Integer amountRemaining;

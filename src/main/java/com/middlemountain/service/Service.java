@@ -36,4 +36,5 @@ public interface Service {
   String createEmployee(Employee employee, String username) throws Exception;
   void createGood(Good good) throws Exception;
   void createCreationJob(CreationJob creationJob) throws Exception;
+  void updateEmployee(Employee employee) throws Exception;
 }
