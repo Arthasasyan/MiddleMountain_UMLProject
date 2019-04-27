@@ -96,6 +96,20 @@
                         </AnchorPane>
                     </children>
                 </AnchorPane>
+                <VBox layoutX="262.0" prefHeight="214.0" prefWidth="267.0">
+                    <children>
+                        <Text fill="#b3dcd8" strokeType="OUTSIDE" strokeWidth="0.0" text="Info:">
+                            <VBox.margin>
+                                <Insets left="70.0" top="35.0" />
+                            </VBox.margin>
+                        </Text>
+                        <Label fx:id="info" prefHeight="25.0" prefWidth="227.0" style="-fx-background-color: #fafafa;">
+                            <VBox.margin>
+                                <Insets left="70.0" />
+                            </VBox.margin>
+                        </Label>
+                    </children>
+                </VBox>
             </children></AnchorPane>
         <Text fill="#b3dcd8" layoutX="179.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Middle Mountain">
             <font>

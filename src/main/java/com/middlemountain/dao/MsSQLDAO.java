@@ -141,7 +141,7 @@ public class MsSQLDAO implements DatabaseDAO {
     }
     val = val.substring(0, val.length() - 1); //removing last coma
     selectWhere = selectWhere.substring(0, selectWhere.length() - 1);
-    String query = "insert into " + table + " values(" + val + ")";
+    String query = "insert into [" + table + "] values(" + val + ")";
     conn.prepareStatement(query).execute();
     //statement.executeQuery("insert into " + table + " values(" + val + ")");
     return Integer.parseInt(getListOfString("select * from " + table + " where " + selectWhere).get(0));
