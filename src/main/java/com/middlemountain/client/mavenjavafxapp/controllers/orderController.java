@@ -67,7 +67,7 @@ public class orderController {
         statusOrder.setItems(orderStatus);
         statusOrder.setOnAction(event -> statusOrder.getValue());
 
-        if( askForSearchController.exist == 1 ) {
+        if( workerController.exist == 1 ) {
             clientNameOrder.setText(askForSearchController.currentOrder.getClientName());
             statusOrder.setValue(askForSearchController.currentOrder.getStatus());
             assignedEmployeeOrder.setText(askForSearchController.currentOrder.getAssignedEmployee().getName());
@@ -107,7 +107,7 @@ public class orderController {
             order.setStatus(statusOrder.getValue());
             order.setEnchantmentJobs(jobController.getOrderEnchant());
             order.setGoods(toOrderController.getOrderGood());
-            if (askForSearchController.exist == 1) {
+            if (workerController.exist == 1) {
                 order.setId(askForSearchController.currentOrder.getId());
                 service.updateOrder(order);
             } else service.createOrder(order);

@@ -11,12 +11,19 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class workerController {
+    public static int exist = -1;
 
     @FXML
     private Button createOrderAction;
 
     @FXML
-    private Button creationJobAction;
+    private Button getOrderAction;
+
+    @FXML
+    private Button creationJobCreateAction;
+
+    @FXML
+    private Button creationJobGetAction;
 
     @FXML
     private Label nameWorker;
@@ -32,10 +39,13 @@ public class workerController {
     void initialize() {
         nameWorker.setText(loginController.employee.getName());
         createOrderAction.setOnAction(event -> {
+            exist = 0;
+            Stage oldStage = (Stage)createOrderAction.getScene().getWindow();
+            oldStage.hide();
             Stage stage = new Stage();
             try {
-                Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("askForSearch.fxml"));
-                stage.setTitle("Search");
+                Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("formForOrder.fxml"));
+                stage.setTitle("Order");
                 stage.setResizable(false);
                 stage.setScene(new Scene(root));
                 stage.initModality(Modality.WINDOW_MODAL);
@@ -61,7 +71,23 @@ public class workerController {
 
         });
 
-        creationJobAction.setOnAction(event -> {
+        getOrderAction.setOnAction(event -> {
+            exist = 1;
+            Stage stage = new Stage();
+            try {
+                Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("askForSearch.fxml"));
+                stage.setTitle("Search");
+                stage.setResizable(false);
+                stage.setScene(new Scene(root));
+                stage.initModality(Modality.WINDOW_MODAL);
+                stage.initOwner(((Node)event.getSource()).getScene().getWindow());
+                stage.show();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+
+        creationJobCreateAction.setOnAction(event -> {
         });
 
         exitButtonAction.setOnAction(event -> {
