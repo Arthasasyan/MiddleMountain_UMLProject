@@ -90,11 +90,15 @@ public class MagicService implements Service {
 
   public void updateOrder(Order order) throws Exception {
     dao.updateTable("[Order]", order.getId(), toListString(order));
-    for(Good good : order.getGoods()) {
-      updateGood(good);
+    if(!(order.getGoods() == null)) {
+      for (Good good : order.getGoods()) {
+        updateGood(good);
+      }
     }
-    for(EnchantmentJob enchantmentJob : order.getEnchantmentJobs()){
-      dao.updateTable("EnchantmentJob", enchantmentJob.getId(), toListString(enchantmentJob));
+    if(!(order.getEnchantmentJobs() == null)) {
+      for (EnchantmentJob enchantmentJob : order.getEnchantmentJobs()) {
+        dao.updateTable("EnchantmentJob", enchantmentJob.getId(), toListString(enchantmentJob));
+      }
     }
   }
 
@@ -149,21 +153,25 @@ public class MagicService implements Service {
 
   public void createOrder(Order order) throws Exception {
     dao.insertInto("[Order]", toListString(order));
-    for(EnchantmentJob enchantmentJob : order.getEnchantmentJobs()) {
-      Integer itemID = dao.insertInto("Item", toListString(enchantmentJob.getItem()));
-      enchantmentJob.getItem().setId(itemID);
-      Integer enchantmentID =dao.insertInto("EnchantmentJob", toListString(enchantmentJob));
-      enchantmentJob.setId(enchantmentID);
-      List<String> res = new ArrayList<>();
-      res.add(order.getId().toString());
-      res.add(enchantmentJob.getId().toString());
-      dao.insertInto("OrderEnchantmentJob", res);
+    if(!(order.getEnchantmentJobs() ==  null)) {
+      for (EnchantmentJob enchantmentJob : order.getEnchantmentJobs()) {
+        Integer itemID = dao.insertInto("Item", toListString(enchantmentJob.getItem()));
+        enchantmentJob.getItem().setId(itemID);
+        Integer enchantmentID = dao.insertInto("EnchantmentJob", toListString(enchantmentJob));
+        enchantmentJob.setId(enchantmentID);
+        List<String> res = new ArrayList<>();
+        res.add(order.getId().toString());
+        res.add(enchantmentJob.getId().toString());
+        dao.insertInto("OrderEnchantmentJob", res);
+      }
     }
-    for(Good good : order.getGoods()){
-      List<String> res = new ArrayList<>();
-      res.add(good.getId().toString());
-      res.add(order.getId().toString());
-      dao.insertInto("OrderGood", res);
+    if(!(order.getGoods()== null)) {
+      for (Good good : order.getGoods()) {
+        List<String> res = new ArrayList<>();
+        res.add(good.getId().toString());
+        res.add(order.getId().toString());
+        dao.insertInto("OrderGood", res);
+      }
     }
   }
 
