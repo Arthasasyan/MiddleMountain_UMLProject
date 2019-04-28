@@ -16,13 +16,7 @@ public class workerController {
     private Button createOrderAction;
 
     @FXML
-    private Button getOrderAction;
-
-    @FXML
-    private Button createEnchantAction;
-
-    @FXML
-    private Button changePersonAction;
+    private Button creationJobAction;
 
     @FXML
     private Label nameWorker;
@@ -33,11 +27,24 @@ public class workerController {
     @FXML
     private Button exitButtonAction;
 
+
     @FXML
     void initialize() {
         nameWorker.setText(loginController.employee.getName());
         createOrderAction.setOnAction(event -> {
-            Stage oldStage = (Stage)createEnchantAction.getScene().getWindow();
+            Stage stage = new Stage();
+            try {
+                Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("askForSearch.fxml"));
+                stage.setTitle("Search");
+                stage.setResizable(false);
+                stage.setScene(new Scene(root));
+                stage.initModality(Modality.WINDOW_MODAL);
+                stage.initOwner(((Node)event.getSource()).getScene().getWindow());
+                stage.show();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            /*Stage oldStage = (Stage)createOrderAction.getScene().getWindow();
             oldStage.hide();
             Stage stage = new Stage();
             try {
@@ -50,20 +57,11 @@ public class workerController {
                 stage.show();
             } catch (Exception e) {
                 e.printStackTrace();
-            }
+            }*/
 
         });
 
-        getOrderAction.setOnAction(event -> {
-
-        });
-
-        createEnchantAction.setOnAction(event -> {
-
-        });
-
-        changePersonAction.setOnAction(event -> {
-
+        creationJobAction.setOnAction(event -> {
         });
 
         exitButtonAction.setOnAction(event -> {

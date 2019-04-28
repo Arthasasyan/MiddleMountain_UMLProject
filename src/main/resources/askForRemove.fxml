@@ -27,7 +27,7 @@
     <bottom>
         <HBox prefHeight="62.0" prefWidth="175.0" BorderPane.alignment="CENTER">
             <children>
-                <Button fx:id="enterAuthAction" minWidth="-Infinity" mnemonicParsing="false" prefHeight="27.0" prefWidth="58.0" style="-fx-border-color: #d4d4d4; -fx-background-color: #edebeb; -fx-border-radius: 5;" text="Enter" textFill="#686767">
+                <Button fx:id="enterRemoveAction" minWidth="-Infinity" mnemonicParsing="false" prefHeight="27.0" prefWidth="58.0" style="-fx-border-color: #d4d4d4; -fx-background-color: #edebeb; -fx-border-radius: 5;" text="Enter" textFill="#686767">
                     <HBox.margin>
                         <Insets left="20.0" />
                     </HBox.margin>

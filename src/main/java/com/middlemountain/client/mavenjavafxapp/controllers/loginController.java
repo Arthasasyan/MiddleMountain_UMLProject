@@ -21,6 +21,7 @@ public class loginController {
     public static String accountName = "";
     public static Employee employee =  null;
     public static Employee nowEmployee;
+    public static Stage oldestWorkerStage;
 
     @FXML
     private Button enterAuthAction;
@@ -63,6 +64,7 @@ public class loginController {
                         stage.setTitle("Worker's window");
                         stage.setResizable(false);
                         stage.setScene(new Scene(root));
+                        oldestWorkerStage = stage;
                         stage.show();
                     } else if ( service.login(loginText, passwordText).getPermission().equals(Permission.MANAGER)) {
                         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("manager.fxml"));
