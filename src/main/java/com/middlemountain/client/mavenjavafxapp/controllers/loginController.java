@@ -5,7 +5,6 @@ import com.middlemountain.enums.Permission;
 import com.middlemountain.model.Employee;
 import com.middlemountain.service.MagicService;
 import com.middlemountain.service.Service;
-import com.middlemountain.service.TestService;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -21,6 +20,7 @@ public class loginController {
     private Service service;
     public static String accountName = "";
     public static Employee employee =  null;
+    public static Employee nowEmployee;
 
     @FXML
     private Button enterAuthAction;
@@ -58,6 +58,7 @@ public class loginController {
                         stage.show();
                     }
                     if( service.login(loginText, passwordText).getPermission().equals(Permission.EMPLOYEE)) {
+                        nowEmployee = service.login(loginText, passwordText);
                         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("worker.fxml"));
                         stage.setTitle("Worker's window");
                         stage.setResizable(false);

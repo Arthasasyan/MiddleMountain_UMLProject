@@ -45,4 +45,21 @@ public class Controller {
         });
     }
 
+    public void exitButton(Button button) {
+        button.setOnAction(event -> {
+            Stage oldStage = (Stage)button.getScene().getWindow();
+            oldStage.close();
+            Stage stage = new Stage();
+            try {
+                Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("sample.fxml"));
+                stage.setTitle("Magic Shop");
+                stage.setResizable(false);
+                stage.setScene(new Scene(root));
+                stage.show();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+    }
+
 }
