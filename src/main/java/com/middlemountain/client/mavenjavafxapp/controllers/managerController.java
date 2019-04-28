@@ -49,32 +49,50 @@ public class managerController {
         nameManager.setText(loginController.employee.getName());
         service = new MagicService();
         exitButtonAction.setOnAction(event -> {
-            Stage oldStage = (Stage)exitButtonAction.getScene().getWindow();
-            oldStage.close();
+            Controller controller = new Controller();
+            controller.exitButton(exitButtonAction);
+        });
+
+        createPersonAction.setOnAction(event -> {
             Stage stage = new Stage();
             try {
-                Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("sample.fxml"));
+                Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("formForEmployee.fxml"));
                 stage.setTitle("Magic Shop");
                 stage.setResizable(false);
                 stage.setScene(new Scene(root));
+                stage.initModality(Modality.WINDOW_MODAL);
+                stage.initOwner(((Node)event.getSource()).getScene().getWindow());
                 stage.show();
             } catch (Exception e) {
                 e.printStackTrace();
             }
         });
 
-        createPersonAction.setOnAction(event -> addFormPerson(createPersonAction));
-
-        createGoodAction.setOnAction(event -> addFormGood(createGoodAction));
+        createGoodAction.setOnAction(event -> {
+            Stage stage = new Stage();
+            try {
+                Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("formForGood.fxml"));
+                stage.setTitle("Magic Shop");
+                stage.setResizable(false);
+                stage.setScene(new Scene(root));
+                stage.initModality(Modality.WINDOW_MODAL);
+                stage.initOwner(((Node)event.getSource()).getScene().getWindow());
+                stage.show();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
 
         changePersonAction.setOnAction(event -> {
             update = true;
-            addFormPerson(changePersonAction);
+            flag = 0;
+            changeForm(changePersonAction);
         });
 
         changeGoodAction.setOnAction(event -> {
             update = true;
-            addFormGood(changeGoodAction);
+            flag = 1;
+            changeForm(changeGoodAction);
         });
 
         deleteGoodAction.setOnAction(event -> {
@@ -105,28 +123,11 @@ public class managerController {
         });
     }
 
-    public void addFormGood(Button button) {
+    public void changeForm(Button button) {
         button.setOnAction(event -> {
             Stage stage = new Stage();
             try {
-                Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("formForGood.fxml"));
-                stage.setTitle("Magic Shop");
-                stage.setResizable(false);
-                stage.setScene(new Scene(root));
-                stage.initModality(Modality.WINDOW_MODAL);
-                stage.initOwner(((Node)event.getSource()).getScene().getWindow());
-                stage.show();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
-    }
-
-    public void addFormPerson(Button button) {
-        button.setOnAction(event -> {
-            Stage stage = new Stage();
-            try {
-                Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("formForEmployee.fxml"));
+                Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("askForChanging.fxml"));
                 stage.setTitle("Magic Shop");
                 stage.setResizable(false);
                 stage.setScene(new Scene(root));

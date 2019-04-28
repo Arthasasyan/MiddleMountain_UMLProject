@@ -4,7 +4,6 @@ import com.middlemountain.enums.MagicType;
 import com.middlemountain.model.Good;
 import com.middlemountain.service.MagicService;
 import com.middlemountain.service.Service;
-import com.middlemountain.service.TestService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -48,13 +47,12 @@ public class addGoodController {
         magicTypeGood.setItems(availableChoices);
         magicTypeGood.setOnAction(event -> magicTypeGood.getValue());
 
-        if( managerController.update == true ) {
-            idAddGood.setText(good.getId().toString());
-            nameAddGood.setText(good.getName());
-            priceAddGood.setText(good.getPrice().toString());
-            magicTypeGood.setValue(good.getMagicType());
-            descriptionAddGood.setText(good.getDescription());
-            managerController.update = false;
+        if( managerController.update ) {
+            idAddGood.setText(askForChangeController.currentGood.getId().toString());
+            nameAddGood.setText(askForChangeController.currentGood.getName());
+            priceAddGood.setText(askForChangeController.currentGood.getPrice().toString());
+            magicTypeGood.setValue(askForChangeController.currentGood.getMagicType());
+            descriptionAddGood.setText(askForChangeController.currentGood.getDescription());
         }
 
         cancelAddGood.setOnAction(event -> {
@@ -72,7 +70,10 @@ public class addGoodController {
                 good.setName(name);
                 good.setPrice(price);
                 good.setMagicType(magicType);
-                service.createGood(good);
+                if( managerController.update == true ) {
+                    service.updateGood(good);
+                } else service.createGood(good);
+                managerController.update = false;
             } catch (Exception e) {
                 e.printStackTrace();
             }

@@ -17,12 +17,12 @@
          <children>
             <VBox prefHeight="267.0" prefWidth="267.0">
                <children>
-                  <Text fill="#b3dcd8" strokeType="OUTSIDE" strokeWidth="0.0" text="id">
+                  <Text fx:id="idAndUsername" fill="#b3dcd8" strokeType="OUTSIDE" strokeWidth="0.0" text="Username">
                      <VBox.margin>
                         <Insets left="20.0" top="15.0" />
                      </VBox.margin>
                   </Text>
-                  <TextField fx:id="idAddWorker" style="-fx-background-color: #fafafa;">
+                  <TextField fx:id="usernameAddWorker" style="-fx-background-color: #fafafa;">
                      <VBox.margin>
                         <Insets left="20.0" right="20.0" />
                      </VBox.margin>
@@ -57,13 +57,18 @@
                         <Insets left="20.0" />
                      </VBox.margin>
                   </ChoiceBox>
+                  <Button fx:id="createAddWorker" minWidth="-Infinity" mnemonicParsing="false" prefHeight="27.0" prefWidth="58.0" style="-fx-border-color: #d4d4d4; -fx-background-color: #edebeb; -fx-border-radius: 5;" text="Create" textFill="#686767">
+                     <VBox.margin>
+                        <Insets left="186.0" top="5.0" />
+                     </VBox.margin>
+                  </Button>
                </children>
             </VBox>
             <HBox layoutX="262.0" layoutY="231.0" prefHeight="36.0" prefWidth="267.0">
                <children>
-                  <Button fx:id="createAddWorker" minWidth="-Infinity" mnemonicParsing="false" prefHeight="27.0" prefWidth="58.0" style="-fx-border-color: #d4d4d4; -fx-background-color: #edebeb; -fx-border-radius: 5;" text="Create" textFill="#686767">
+                  <Button fx:id="OKInfoWorker" minWidth="-Infinity" mnemonicParsing="false" prefHeight="27.0" prefWidth="58.0" style="-fx-border-color: #d4d4d4; -fx-background-color: #edebeb; -fx-border-radius: 5;" text="OK" textFill="#686767">
                      <HBox.margin>
-                        <Insets left="120.0" />
+                        <Insets left="110.0" />
                      </HBox.margin>
                   </Button>
                   <Button fx:id="cancelAddForm" minWidth="-Infinity" mnemonicParsing="false" prefHeight="27.0" prefWidth="58.0" style="-fx-border-color: #d4d4d4; -fx-background-color: #edebeb; -fx-border-radius: 5;" text="Cancel" textFill="#686767">
@@ -85,11 +90,16 @@
                         <Insets left="20.0" />
                      </VBox.margin>
                   </Label>
-                  <Button fx:id="OKInfoWorker" minWidth="-Infinity" mnemonicParsing="false" prefHeight="27.0" prefWidth="58.0" style="-fx-border-color: #d4d4d4; -fx-background-color: #edebeb; -fx-border-radius: 5;" text="OK" textFill="#686767">
+                  <Text fill="#b3dcd8" strokeType="OUTSIDE" strokeWidth="0.0" text="Password:">
                      <VBox.margin>
-                        <Insets left="189.0" top="5.0" />
+                        <Insets left="20.0" top="10.0" />
                      </VBox.margin>
-                  </Button>
+                  </Text>
+                  <Label fx:id="passwordWorker" prefHeight="25.0" prefWidth="227.0" style="-fx-background-color: #fafafa;">
+                     <VBox.margin>
+                        <Insets left="20.0" />
+                     </VBox.margin>
+                  </Label>
                </children>
             </VBox>
          </children></AnchorPane>
