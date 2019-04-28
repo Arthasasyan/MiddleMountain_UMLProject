@@ -61,12 +61,12 @@ public class MsSQLDAO implements DatabaseDAO {
   }
 
   public List<String> getOrder(Integer id) throws Exception {
-    String query = "Select * from Order where OrderID = " + id;
+    String query = "Select * from [Order] where OrderID = " + id;
     return getListOfString(query);
   }
 
   public List<String> getOrder(String clientName) throws Exception {
-    String query = "Select * from Order where ClientName = '" + clientName + "'";
+    String query = "Select * from [Order] where ClientName = '" + clientName + "'";
     return getListOfString(query);
   }
 
@@ -106,8 +106,8 @@ public class MsSQLDAO implements DatabaseDAO {
     return executeQuery(query);
   }
   public Set<List<String>> getOrders(Integer employeeID) throws Exception {
-    String query = "Select * from Order inner join\n" +
-            "Employee on Order.AssignedEmployeeID = Employee.EmployeeID where Employee.EmployeeID = '" + employeeID;
+    String query = "Select * from [Order] inner join\n" +
+            "Employee on [Order].AssignedEmployeeID = Employee.EmployeeID where Employee.EmployeeID = '" + employeeID;
     return executeQuery(query);
   }
 
