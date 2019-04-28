@@ -17,7 +17,6 @@ import javafx.stage.Stage;
 public class askForSearchController {
     private Service service;
     public static Order currentOrder;
-    public static int exist = 0;
 
     @FXML
     private Button enterSearchAction;
@@ -34,8 +33,8 @@ public class askForSearchController {
     @FXML
     void initialize() throws Exception {
         service = new MagicService();
-        String name = enterNameSearch.getText();
-        String id = enterIdSearch.getText();
+        String clientName = enterNameSearch.getText().trim();
+        String orderId = enterIdSearch.getText().trim();
 
         cancelSearchAction.setOnAction(event -> {
             Controller controller = new Controller();
@@ -45,24 +44,19 @@ public class askForSearchController {
         enterSearchAction.setOnAction(event -> {
             Stage oldStage = (Stage)enterSearchAction.getScene().getWindow();
             oldStage.close();
-            if(!name.equals("-")) {
+            if(!clientName.equals("-")) {
                 try {
-                    currentOrder = service.getOrder(name);
-                    exist = 1;
+                    currentOrder = service.getOrder(clientName);
                     openForm(event);
                 } catch (Exception e) {
                     warningOrderForm(event);
-                    exist = 0;
                 }
             } else {
                 try {
-                    currentOrder = service.getOrder(Integer.parseInt(id));
-                    exist = 1;
-                    loginController.oldestWorkerStage.close();
+                    currentOrder = service.getOrder(Integer.parseInt(orderId));
                     openForm(event);
                 } catch (Exception e) {
                     warningOrderForm(event);
-                    exist = 0;
                 }
             }
         });

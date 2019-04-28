@@ -48,7 +48,12 @@
                                                         </BorderPane>
                                                         <Button fx:id="createOrderAction" minWidth="-Infinity" mnemonicParsing="false" prefHeight="27.0" prefWidth="101.0" style="-fx-border-color: #d4d4d4; -fx-background-color: #edebeb; -fx-border-radius: 5;" text="Create" textFill="#686767">
                                                             <VBox.margin>
-                                                                <Insets left="28.0" top="40.0" />
+                                                                <Insets left="28.0" top="20.0" />
+                                                            </VBox.margin>
+                                                        </Button>
+                                                        <Button fx:id="getOrderAction" minWidth="-Infinity" mnemonicParsing="false" prefHeight="27.0" prefWidth="101.0" style="-fx-border-color: #d4d4d4; -fx-background-color: #edebeb; -fx-border-radius: 5;" text="Get" textFill="#686767">
+                                                            <VBox.margin>
+                                                                <Insets left="28.0" top="20.0" />
                                                             </VBox.margin>
                                                         </Button>
                                                     </children>
@@ -60,9 +65,14 @@
                                                                 <Text fill="#b3dcd8" strokeType="OUTSIDE" strokeWidth="0.0" text="Creation Job" BorderPane.alignment="CENTER" />
                                                             </center>
                                                         </BorderPane>
-                                                        <Button fx:id="creationJobAction" minWidth="-Infinity" mnemonicParsing="false" prefHeight="27.0" prefWidth="101.0" style="-fx-border-color: #d4d4d4; -fx-background-color: #edebeb; -fx-border-radius: 5;" text="Create" textFill="#686767">
+                                                        <Button fx:id="creationJobCreateAction" minWidth="-Infinity" mnemonicParsing="false" prefHeight="27.0" prefWidth="101.0" style="-fx-border-color: #d4d4d4; -fx-background-color: #edebeb; -fx-border-radius: 5;" text="Create" textFill="#686767">
                                                             <VBox.margin>
-                                                                <Insets left="28.0" top="40.0" />
+                                                                <Insets left="28.0" top="20.0" />
+                                                            </VBox.margin>
+                                                        </Button>
+                                                        <Button fx:id="creationJobGetAction" minWidth="-Infinity" mnemonicParsing="false" prefHeight="27.0" prefWidth="101.0" style="-fx-border-color: #d4d4d4; -fx-background-color: #edebeb; -fx-border-radius: 5;" text="Get" textFill="#686767">
+                                                            <VBox.margin>
+                                                                <Insets left="28.0" top="20.0" />
                                                             </VBox.margin>
                                                         </Button>
                                                     </children>
