@@ -10,7 +10,7 @@ import javafx.scene.control.Label;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-public class workerController {
+public class WorkerController {
     public static int exist = -1;
 
     @FXML
@@ -37,7 +37,8 @@ public class workerController {
 
     @FXML
     void initialize() {
-        nameWorker.setText(loginController.employee.getName());
+        System.out.println(LoginController.loginUsername);
+        nameWorker.setText(LoginController.employee.getName());
         createOrderAction.setOnAction(event -> {
             exist = 0;
             Stage oldStage = (Stage)createOrderAction.getScene().getWindow();

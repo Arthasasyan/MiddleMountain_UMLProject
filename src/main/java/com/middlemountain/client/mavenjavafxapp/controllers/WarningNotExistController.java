@@ -4,7 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
-public class warningNotExistController {
+public class WarningNotExistController {
 
     @FXML
     private Button createOrder;
@@ -14,7 +14,7 @@ public class warningNotExistController {
 
     @FXML
     void initialize() {
-        askForSearchController searchController = new askForSearchController();
+        AskForSearchController searchController = new AskForSearchController();
         cancelCreateOrder.setOnAction(event -> {
             Controller controller = new Controller();
             controller.cancelButton(cancelCreateOrder);

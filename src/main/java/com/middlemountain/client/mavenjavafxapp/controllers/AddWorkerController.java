@@ -1,5 +1,6 @@
 package com.middlemountain.client.mavenjavafxapp.controllers;
 
+import com.middlemountain.client.mavenjavafxapp.MainApp;
 import com.middlemountain.enums.Permission;
 import com.middlemountain.model.Employee;
 import com.middlemountain.service.MagicService;
@@ -13,8 +14,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 
-public class addWorkerController {
-    private Service service;
+public class AddWorkerController {
+
     @FXML
     private Text idAndUsername;
 
@@ -47,19 +48,18 @@ public class addWorkerController {
 
     @FXML
     void initialize() throws Exception {
-        service = new MagicService();
         Employee employee = new Employee();
 
         ObservableList<Permission> availableChoices = FXCollections.observableArrayList(Permission.EMPLOYEE, Permission.MANAGER);
         choiceBoxWorker.setItems(availableChoices);
         choiceBoxWorker.setOnAction(event -> choiceBoxWorker.getValue());
 
-        if (managerController.update == true ) {
+        if (ManagerController.update == true ) {
             idAndUsername.setText("id");
-            usernameAddWorker.setText(askForChangeController.currentEmployee.getId().toString());
-            nameAddWorker.setText(askForChangeController.currentEmployee.getName());
-            salaryAddWorker.setText(askForChangeController.currentEmployee.getSalary().toString());
-            choiceBoxWorker.setValue(askForChangeController.currentEmployee.getPermission());
+            usernameAddWorker.setText(AskForChangeController.currentEmployee.getId().toString());
+            nameAddWorker.setText(AskForChangeController.currentEmployee.getName());
+            salaryAddWorker.setText(AskForChangeController.currentEmployee.getSalary().toString());
+            choiceBoxWorker.setValue(AskForChangeController.currentEmployee.getPermission());
         }
 
         cancelAddForm.setOnAction(event -> {
@@ -77,11 +77,11 @@ public class addWorkerController {
                 employee.setName(nameWorker);
                 employee.setSalary(salary);
                 employee.setPermission(permission);
-                if( managerController.update == true ) {
-                    employee.setId(askForChangeController.currentEmployee.getId());
-                    service.updateEmployee(employee);
+                if( ManagerController.update == true ) {
+                    employee.setId(AskForChangeController.currentEmployee.getId());
+                    MainApp.service.updateEmployee(employee);
                     System.out.println("Update has done");
-                } else passwordWorker.setText(service.createEmployee(employee, username));
+                } else passwordWorker.setText(MainApp.service.createEmployee(employee, username));
             } catch (Exception e) {
                 e.printStackTrace();
             }

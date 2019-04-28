@@ -13,8 +13,7 @@ import javafx.scene.control.Label;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-public class managerController {
-    private Service service;
+public class ManagerController {
     public static int flag = -1;
     public static Boolean update = false;
 
@@ -48,8 +47,7 @@ public class managerController {
     @FXML
     void initialize() throws Exception {
         MainApp.oldestStage.close();
-        nameManager.setText(loginController.employee.getName());
-        service = new MagicService();
+        nameManager.setText(LoginController.employee.getName());
         exitButtonAction.setOnAction(event -> {
             Controller controller = new Controller();
             controller.exitButton(exitButtonAction);
