@@ -89,7 +89,7 @@ public class MagicService implements Service {
   }
 
   public void updateOrder(Order order) throws Exception {
-    dao.updateTable("Order", order.getId(), toListString(order));
+    dao.updateTable("[Order]", order.getId(), toListString(order));
     for(Good good : order.getGoods()) {
       updateGood(good);
     }
@@ -148,7 +148,7 @@ public class MagicService implements Service {
   }
 
   public void createOrder(Order order) throws Exception {
-    dao.insertInto("Order", toListString(order));
+    dao.insertInto("[Order]", toListString(order));
     for(EnchantmentJob enchantmentJob : order.getEnchantmentJobs()) {
       Integer itemID = dao.insertInto("Item", toListString(enchantmentJob.getItem()));
       enchantmentJob.getItem().setId(itemID);
