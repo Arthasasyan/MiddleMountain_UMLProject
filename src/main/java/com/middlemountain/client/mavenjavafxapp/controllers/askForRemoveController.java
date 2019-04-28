@@ -1,18 +1,17 @@
 package com.middlemountain.client.mavenjavafxapp.controllers;
 
-import com.middlemountain.model.Employee;
-import com.middlemountain.model.Good;
 import com.middlemountain.service.MagicService;
 import com.middlemountain.service.Service;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 public class askForRemoveController {
     private Service service;
 
     @FXML
-    private Button enterAuthAction;
+    private Button enterRemoveAction;
 
     @FXML
     private Button cancelAuthAction;
@@ -32,7 +31,9 @@ public class askForRemoveController {
             controller.cancelButton(cancelAuthAction);
         });
 
-        enterAuthAction.setOnAction(event -> {
+        enterRemoveAction.setOnAction(event -> {
+            Stage oldStage = (Stage)enterRemoveAction.getScene().getWindow();
+            oldStage.hide();
             String name = enterNameChange.getText();
             String id = enterIdChange.getText();
             if (managerController.flag == 0) {
@@ -47,7 +48,7 @@ public class askForRemoveController {
                 }
             } else if (managerController.flag == 1) {
                 try {
-                    if ( !name.equals("") ) {
+                    if ( !name.equals("-") ) {
                         service.deleteGood(service.getGood(name));
                     } else if( !id.equals("-")) {
                         service.deleteGood(service.getGood(Integer.parseInt(id)));

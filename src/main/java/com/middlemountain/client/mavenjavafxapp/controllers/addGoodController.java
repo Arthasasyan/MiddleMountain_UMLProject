@@ -71,6 +71,7 @@ public class addGoodController {
                 good.setPrice(price);
                 good.setMagicType(magicType);
                 if( managerController.update == true ) {
+                    good.setId(askForChangeController.currentGood.getId());
                     service.updateGood(good);
                 } else service.createGood(good);
                 managerController.update = false;

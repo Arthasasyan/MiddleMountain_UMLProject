@@ -1,5 +1,6 @@
 package com.middlemountain.client.mavenjavafxapp.controllers;
 
+import com.middlemountain.client.mavenjavafxapp.MainApp;
 import com.middlemountain.service.MagicService;
 import com.middlemountain.service.Service;
 import javafx.fxml.FXML;
@@ -46,6 +47,7 @@ public class managerController {
 
     @FXML
     void initialize() throws Exception {
+        MainApp.oldestStage.close();
         nameManager.setText(loginController.employee.getName());
         service = new MagicService();
         exitButtonAction.setOnAction(event -> {
@@ -54,6 +56,7 @@ public class managerController {
         });
 
         createPersonAction.setOnAction(event -> {
+            update = false;
             Stage stage = new Stage();
             try {
                 Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("formForEmployee.fxml"));
@@ -69,6 +72,7 @@ public class managerController {
         });
 
         createGoodAction.setOnAction(event -> {
+            update = false;
             Stage stage = new Stage();
             try {
                 Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("formForGood.fxml"));

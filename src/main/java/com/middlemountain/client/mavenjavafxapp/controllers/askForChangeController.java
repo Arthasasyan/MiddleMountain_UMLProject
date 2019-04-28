@@ -40,6 +40,8 @@ public class askForChangeController {
         });
 
         enterChangeAction.setOnAction(event -> {
+            Stage oldStage = (Stage)enterChangeAction.getScene().getWindow();
+            oldStage.hide();
             String name = enterNameChange.getText();
             String id = enterIdChange.getText();
             if ( managerController.flag == 0 ) {

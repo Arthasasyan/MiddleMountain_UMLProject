@@ -77,12 +77,11 @@ public class addWorkerController {
                 employee.setName(nameWorker);
                 employee.setSalary(salary);
                 employee.setPermission(permission);
-                System.out.println(managerController.update);
                 if( managerController.update == true ) {
+                    employee.setId(askForChangeController.currentEmployee.getId());
                     service.updateEmployee(employee);
                     System.out.println("Update has done");
                 } else passwordWorker.setText(service.createEmployee(employee, username));
-                managerController.update = false;
             } catch (Exception e) {
                 e.printStackTrace();
             }
