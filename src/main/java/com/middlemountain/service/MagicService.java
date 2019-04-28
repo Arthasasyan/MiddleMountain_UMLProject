@@ -150,8 +150,10 @@ public class MagicService implements Service {
   public void createOrder(Order order) throws Exception {
     dao.insertInto("Order", toListString(order));
     for(EnchantmentJob enchantmentJob : order.getEnchantmentJobs()) {
-      dao.insertInto("Item", toListString(enchantmentJob.getItem()));
-      dao.insertInto("EnchantmentJob", toListString(enchantmentJob));
+      Integer itemID = dao.insertInto("Item", toListString(enchantmentJob.getItem()));
+      enchantmentJob.getItem().setId(itemID);
+      Integer enchantmentID =dao.insertInto("EnchantmentJob", toListString(enchantmentJob));
+      enchantmentJob.setId(enchantmentID);
       List<String> res = new ArrayList<>();
       res.add(order.getId().toString());
       res.add(enchantmentJob.getId().toString());
