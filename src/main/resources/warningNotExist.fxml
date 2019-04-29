@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="98.0" prefWidth="225.0" style="-fx-background-color: #e0e0e0;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.middlemountain.client.mavenjavafxapp.controllers.warningNotExistController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="98.0" prefWidth="225.0" style="-fx-background-color: #e0e0e0;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.middlemountain.client.mavenjavafxapp.controllers.WarningNotExistController">
     <children>
         <Text fill="#686767" strokeType="OUTSIDE" strokeWidth="0.0" text="WARNING!">
             <VBox.margin>

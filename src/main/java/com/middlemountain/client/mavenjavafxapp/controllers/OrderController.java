@@ -1,5 +1,6 @@
 package com.middlemountain.client.mavenjavafxapp.controllers;
 
+import com.middlemountain.client.mavenjavafxapp.MainApp;
 import com.middlemountain.enums.OrderStatus;
 import com.middlemountain.model.*;
 import com.middlemountain.service.MagicService;
@@ -13,9 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
-public class orderController {
-    private Service service;
-
+public class OrderController {
 
     @FXML
     private TextField clientNameOrder;
@@ -50,11 +49,10 @@ public class orderController {
 
     @FXML
     void initialize() throws Exception {
-        enchantmentJobController jobController = new enchantmentJobController();
-        goodToOrderController toOrderController = new goodToOrderController();
-        loginController.oldestWorkerStage.close();
+        EnchantmentJobController jobController = new EnchantmentJobController();
+        GoodToOrderController toOrderController = new GoodToOrderController();
+        LoginController.oldestWorkerStage.close();
         Order order = new Order();
-        service = new MagicService();
         Stage enchantStage = enchantWindow();
         Stage addStage = addWindow();
 
@@ -67,14 +65,34 @@ public class orderController {
         statusOrder.setItems(orderStatus);
         statusOrder.setOnAction(event -> statusOrder.getValue());
 
-        if( workerController.exist == 1 ) {
-            clientNameOrder.setText(askForSearchController.currentOrder.getClientName());
-            statusOrder.setValue(askForSearchController.currentOrder.getStatus());
-            assignedEmployeeOrder.setText(askForSearchController.currentOrder.getAssignedEmployee().getName());
-            addressShip.setText(askForSearchController.currentOrder.getShippingAddress().getAddress());
-            cityShip.setText(askForSearchController.currentOrder.getShippingAddress().getCity());
-            countryShip.setText(askForSearchController.currentOrder.getShippingAddress().getCountry());
+        if( WorkerController.exist == 1 ) {
+            clientNameOrder.setText(AskForSearchController.currentOrder.getClientName());
+            statusOrder.setValue(AskForSearchController.currentOrder.getStatus());
+            assignedEmployeeOrder.setText(LoginController.loginUsername);
+            addressShip.setText(AskForSearchController.currentOrder.getShippingAddress().getAddress());
+            cityShip.setText(AskForSearchController.currentOrder.getShippingAddress().getCity());
+            countryShip.setText(AskForSearchController.currentOrder.getShippingAddress().getCountry());
         }
+
+        createOrder.setOnAction(event -> {
+            try {
+
+                Address address = new Address(countryShip.getText(),cityShip.getText(), addressShip.getText());
+                order.setAssignedEmployee(MainApp.service.getEmployee(LoginController.loginUsername));
+                order.setClientName(clientNameOrder.getText());
+                order.setShippingAddress(address);
+                order.setStatus(statusOrder.getValue());
+                order.setEnchantmentJobs(jobController.getOrderEnchant());
+                order.setGoods(toOrderController.getOrderGood());
+                if (WorkerController.exist == 1) {
+                    order.setId(MainApp.service.getOrder(clientNameOrder.getText()).getId());
+                    MainApp.service.updateOrder(order);
+                } else MainApp.service.createOrder(order);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        });
 
         cancelOrder.setOnAction(event -> {
             Stage oldStage = (Stage)cancelOrder.getScene().getWindow();
@@ -94,28 +112,22 @@ public class orderController {
         });
 
         OKOrder.setOnAction(event -> {
-            Controller controller = new Controller();
-            controller.cancelButton(OKOrder);
-        });
-
-        createOrder.setOnAction(event -> {
+            Stage oldStage = (Stage)OKOrder.getScene().getWindow();
+            oldStage.close();
+            enchantStage.close();
+            addStage.close();
+            Stage stage = new Stage();
             try {
-            Address address = new Address(countryShip.getText(),cityShip.getText(), addressShip.getText());
-            order.setAssignedEmployee(service.getEmployee(assignedEmployeeOrder.getText()));
-            order.setClientName(clientNameOrder.getText());
-            order.setShippingAddress(address);
-            order.setStatus(statusOrder.getValue());
-            order.setEnchantmentJobs(jobController.getOrderEnchant());
-            order.setGoods(toOrderController.getOrderGood());
-            if (workerController.exist == 1) {
-                order.setId(askForSearchController.currentOrder.getId());
-                service.updateOrder(order);
-            } else service.createOrder(order);
+                Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("worker.fxml"));
+                stage.setTitle("Magic Shop");
+                stage.setResizable(false);
+                stage.setScene(new Scene(root));
+                stage.show();
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
         });
+
 
     }
 

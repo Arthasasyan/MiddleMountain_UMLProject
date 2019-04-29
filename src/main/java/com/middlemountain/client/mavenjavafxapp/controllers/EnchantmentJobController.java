@@ -17,8 +17,7 @@ import javafx.scene.control.TextField;
 
 import java.util.List;
 
-public class enchantmentJobController {
-    private Service service;
+public class EnchantmentJobController {
     private Order order = new Order();
 
     @FXML
@@ -46,7 +45,6 @@ public class enchantmentJobController {
     void initialize() throws Exception {
         Item item = new Item();
         EnchantmentJob enchantmentJob = new EnchantmentJob();
-        service = new MagicService();
 
         ObservableList<MagicType> availableChoices = FXCollections.observableArrayList(MagicType.FIRE,
                 MagicType.AIR, MagicType.ARCANE, MagicType.GROUND, MagicType.HOUSEHOLD,

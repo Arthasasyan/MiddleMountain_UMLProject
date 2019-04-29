@@ -17,8 +17,8 @@ import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;;
 
-public class loginController {
-    private Service service;
+public class LoginController {
+    public static String loginUsername;
     public static String accountName = "";
     public static Employee employee =  null;
     public static Employee nowEmployee;
@@ -38,7 +38,6 @@ public class loginController {
 
     @FXML
     void initialize() throws Exception {
-        service = new MagicService();
         enterAuthAction.setOnAction(event -> {
             try {
                 Stage stage = new Stage();
@@ -46,10 +45,11 @@ public class loginController {
                 oldStage.hide();
                 MainApp.oldestStage.close();
                 String loginText = loginInputAction.getText().trim();
+                loginUsername = loginInputAction.getText();
                 String passwordText = passwordInputAction.getText().trim();
                 if(!loginText.equals("") && !passwordText.equals("")) {
                     try  {
-                        employee = service.login(loginText, passwordText);
+                        employee = MainApp.service.login(loginText, passwordText);
                     } catch (Exception e) {
                         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("warningAuth.fxml"));
                         stage.setTitle("Warning");
@@ -59,15 +59,15 @@ public class loginController {
                         stage.initOwner(((Node)event.getSource()).getScene().getWindow());
                         stage.show();
                     }
-                    if( service.login(loginText, passwordText).getPermission().equals(Permission.EMPLOYEE)) {
-                        nowEmployee = service.login(loginText, passwordText);
+                    if( MainApp.service.login(loginText, passwordText).getPermission().equals(Permission.EMPLOYEE)) {
+                        nowEmployee = MainApp.service.login(loginText, passwordText);
                         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("worker.fxml"));
                         stage.setTitle("Worker's window");
                         stage.setResizable(false);
                         stage.setScene(new Scene(root));
                         oldestWorkerStage = stage;
                         stage.show();
-                    } else if ( service.login(loginText, passwordText).getPermission().equals(Permission.MANAGER)) {
+                    } else if ( MainApp.service.login(loginText, passwordText).getPermission().equals(Permission.MANAGER)) {
                         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("manager.fxml"));
                         stage.setTitle("Manager's window");
                         stage.setResizable(false);
@@ -85,6 +85,7 @@ public class loginController {
             Controller controller = new Controller();
             controller.cancelButton(cancelAuthAction);
         });
+
     }
 
 }

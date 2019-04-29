@@ -1,16 +1,15 @@
 package com.middlemountain.client.mavenjavafxapp.controllers;
 
+import com.middlemountain.client.mavenjavafxapp.MainApp;
 import com.middlemountain.enums.MagicType;
 import com.middlemountain.model.Good;
-import com.middlemountain.service.MagicService;
 import com.middlemountain.service.Service;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
-public class addGoodController {
-    private Service service;
+public class AddGoodController {
 
     @FXML
     private TextField nameAddGood;
@@ -39,7 +38,6 @@ public class addGoodController {
     @FXML
     void initialize() throws Exception {
         Good good = new Good();
-        service = new MagicService();
 
         ObservableList<MagicType> availableChoices = FXCollections.observableArrayList(MagicType.FIRE,
                 MagicType.AIR, MagicType.ARCANE, MagicType.GROUND, MagicType.HOUSEHOLD,
@@ -47,12 +45,12 @@ public class addGoodController {
         magicTypeGood.setItems(availableChoices);
         magicTypeGood.setOnAction(event -> magicTypeGood.getValue());
 
-        if( managerController.update ) {
-            idAddGood.setText(askForChangeController.currentGood.getId().toString());
-            nameAddGood.setText(askForChangeController.currentGood.getName());
-            priceAddGood.setText(askForChangeController.currentGood.getPrice().toString());
-            magicTypeGood.setValue(askForChangeController.currentGood.getMagicType());
-            descriptionAddGood.setText(askForChangeController.currentGood.getDescription());
+        if( ManagerController.update ) {
+            idAddGood.setText(AskForChangeController.currentGood.getId().toString());
+            nameAddGood.setText(AskForChangeController.currentGood.getName());
+            priceAddGood.setText(AskForChangeController.currentGood.getPrice().toString());
+            magicTypeGood.setValue(AskForChangeController.currentGood.getMagicType());
+            descriptionAddGood.setText(AskForChangeController.currentGood.getDescription());
         }
 
         cancelAddGood.setOnAction(event -> {
@@ -70,11 +68,11 @@ public class addGoodController {
                 good.setName(name);
                 good.setPrice(price);
                 good.setMagicType(magicType);
-                if( managerController.update == true ) {
-                    good.setId(askForChangeController.currentGood.getId());
-                    service.updateGood(good);
-                } else service.createGood(good);
-                managerController.update = false;
+                if( ManagerController.update == true ) {
+                    good.setId(AskForChangeController.currentGood.getId());
+                    MainApp.service.updateGood(good);
+                } else MainApp.service.createGood(good);
+                ManagerController.update = false;
             } catch (Exception e) {
                 e.printStackTrace();
             }

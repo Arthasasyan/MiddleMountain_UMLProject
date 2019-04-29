@@ -1,5 +1,6 @@
 package com.middlemountain.client.mavenjavafxapp.controllers;
 
+import com.middlemountain.client.mavenjavafxapp.MainApp;
 import com.middlemountain.model.Order;
 import com.middlemountain.service.MagicService;
 import com.middlemountain.service.Service;
@@ -14,8 +15,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-public class askForSearchController {
-    private Service service;
+public class AskForSearchController {
     public static Order currentOrder;
 
     @FXML
@@ -32,9 +32,6 @@ public class askForSearchController {
 
     @FXML
     void initialize() throws Exception {
-        service = new MagicService();
-        String clientName = enterNameSearch.getText().trim();
-        String orderId = enterIdSearch.getText().trim();
 
         cancelSearchAction.setOnAction(event -> {
             Controller controller = new Controller();
@@ -42,18 +39,20 @@ public class askForSearchController {
         });
 
         enterSearchAction.setOnAction(event -> {
+            String clientName = enterNameSearch.getText().trim();
+            String orderId = enterIdSearch.getText().trim();
             Stage oldStage = (Stage)enterSearchAction.getScene().getWindow();
             oldStage.close();
             if(!clientName.equals("-")) {
                 try {
-                    currentOrder = service.getOrder(clientName);
+                    currentOrder = MainApp.service.getOrder(clientName);
                     openForm(event);
                 } catch (Exception e) {
                     warningOrderForm(event);
                 }
             } else {
                 try {
-                    currentOrder = service.getOrder(Integer.parseInt(orderId));
+                    currentOrder = MainApp.service.getOrder(Integer.parseInt(orderId));
                     openForm(event);
                 } catch (Exception e) {
                     warningOrderForm(event);

@@ -1,5 +1,6 @@
 package com.middlemountain.client.mavenjavafxapp.controllers;
 
+import com.middlemountain.client.mavenjavafxapp.MainApp;
 import com.middlemountain.model.Employee;
 import com.middlemountain.model.Good;
 import com.middlemountain.service.MagicService;
@@ -14,8 +15,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-public class askForChangeController {
-    private Service service;
+public class AskForChangeController {
     public static Employee currentEmployee;
     public static Good currentGood;
 
@@ -33,7 +33,6 @@ public class askForChangeController {
 
     @FXML
     void initialize() throws Exception {
-        service = new MagicService();
         cancelChangeAction.setOnAction(event -> {
             Controller controller = new Controller();
             controller.cancelButton(cancelChangeAction);
@@ -44,11 +43,11 @@ public class askForChangeController {
             oldStage.hide();
             String name = enterNameChange.getText();
             String id = enterIdChange.getText();
-            if ( managerController.flag == 0 ) {
+            if ( ManagerController.flag == 0 ) {
                 if (!name.equals("-")) {
                     Stage stage = new Stage();
                     try {
-                        currentEmployee = service.getEmployee(name);
+                        currentEmployee = MainApp.service.getEmployee(name);
                         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("formForEmployee.fxml"));
                         stage.setTitle("Magic Shop");
                         stage.setResizable(false);
@@ -63,7 +62,7 @@ public class askForChangeController {
                 else if(!id.equals("-")){
                     Stage stage = new Stage();
                     try {
-                        currentEmployee = service.getEmployee(Integer.parseInt(id));
+                        currentEmployee = MainApp.service.getEmployee(Integer.parseInt(id));
                         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("formForEmployee.fxml"));
                         stage.setTitle("Magic Shop");
                         stage.setResizable(false);
@@ -75,11 +74,11 @@ public class askForChangeController {
                         e.printStackTrace();
                     }
                 }
-            } else if (managerController.flag == 1 ) {
+            } else if (ManagerController.flag == 1 ) {
                 if (!name.equals("-")) {
                     Stage stage = new Stage();
                     try {
-                        currentGood = service.getGood(name);
+                        currentGood = MainApp.service.getGood(name);
                         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("formForGood.fxml"));
                         stage.setTitle("Magic Shop");
                         stage.setResizable(false);
@@ -94,7 +93,7 @@ public class askForChangeController {
                 else if(!id.equals("-")) {
                     Stage stage = new Stage();
                     try {
-                        currentGood = service.getGood(Integer.parseInt(id));
+                        currentGood = MainApp.service.getGood(Integer.parseInt(id));
                         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("formForGood.fxml"));
                         stage.setTitle("Magic Shop");
                         stage.setResizable(false);

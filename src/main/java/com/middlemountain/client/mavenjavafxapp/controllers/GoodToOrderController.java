@@ -1,5 +1,6 @@
 package com.middlemountain.client.mavenjavafxapp.controllers;
 
+import com.middlemountain.client.mavenjavafxapp.MainApp;
 import com.middlemountain.model.Good;
 import com.middlemountain.model.Order;
 import com.middlemountain.service.MagicService;
@@ -7,12 +8,9 @@ import com.middlemountain.service.Service;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-
-import java.util.ArrayList;
 import java.util.List;
 
-public class goodToOrderController {
-    private Service service;
+public class GoodToOrderController {
     private Order order = new Order();
 
     @FXML
@@ -29,9 +27,6 @@ public class goodToOrderController {
 
     @FXML
     void initialize() throws Exception {
-        service = new MagicService();
-        String name = enterNameGood.getText();
-        String id = enterIdGood.getText();
 
         cancelAddGood.setOnAction(event -> {
             Controller controller = new Controller();
@@ -39,18 +34,23 @@ public class goodToOrderController {
         });
 
         addGoodToOrder.setOnAction(event -> {
+            String name = enterNameGood.getText();
+            String id = enterIdGood.getText();
             if(!name.equals("-")) {
                 try {
-                    order.addGood(service.getGood(name));
+                    order.addGood(MainApp.service.getGood(name));
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             } else if (!id.equals("-")) {
                 try {
-                    order.addGood(service.getGood(Integer.parseInt(id)));
+                    order.addGood(MainApp.service.getGood(Integer.parseInt(id)));
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+            }
+            for ( int i = 0; i < order.getGoods().size(); i++) {
+                System.out.println(order.getGoods().get(i));
             }
         });
     }
