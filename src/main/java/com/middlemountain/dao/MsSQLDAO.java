@@ -18,9 +18,6 @@ public class MsSQLDAO implements DatabaseDAO {
     userName = prop.getProperty("username");
     passWord = prop.getProperty("password");
     connectionString = prop.getProperty("connectionString");
-    System.out.println(userName);
-    System.out.println(passWord);
-    System.out.println(connectionString);
     Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
     conn = DriverManager.getConnection(connectionString, userName, passWord);
   }
