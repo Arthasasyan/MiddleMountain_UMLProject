@@ -3,6 +3,7 @@ package com.middlemountain.client.mavenjavafxapp.controllers;
 import com.middlemountain.client.mavenjavafxapp.MainApp;
 import com.middlemountain.enums.Permission;
 import com.middlemountain.model.Employee;
+import com.middlemountain.model.Order;
 import com.middlemountain.service.MagicService;
 import com.middlemountain.service.Service;
 import javafx.fxml.FXML;
