@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class UpdateEmployee {
     private Employee employee;
-    public void UpdateEmployee() throws Exception {
+    public void updateEmployee() throws Exception {
         Scanner in = new Scanner(System.in);
         System.out.print("Enter the employee's id or username: ");
         String update = in.nextLine();
@@ -40,7 +40,7 @@ public class UpdateEmployee {
         try {
             MainApp.service.updateEmployee(employee);
         } catch (Exception e ){
-            e.printStackTrace();
+            System.out.println("Information about" + employee.getName() + " couldn't be updated.");
         }
     }
 }

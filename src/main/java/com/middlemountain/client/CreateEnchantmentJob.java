@@ -12,9 +12,9 @@ public class CreateEnchantmentJob {
     private Item item = new Item();
     private MagicType magicType;
     private CreateGood createGood = new CreateGood();
-    public EnchantmentJob CreateEnchantmentJob() {
+    public EnchantmentJob createEnchantmentJob() {
         System.out.println("You have to add an item to enchant");
-        CreateItem();
+        createItem();
         System.out.print("Choose a magic type - F(fire), W(water), A(air), G(ground), M(mental), AR(arcane), H(household) - ");
         String letter = in.nextLine();
         magicType = createGood.typeOfMagic(letter);
@@ -26,7 +26,7 @@ public class CreateEnchantmentJob {
         return enchantmentJob;
     }
 
-    public void CreateItem() {
+    public void createItem() {
         System.out.print("Enter item's description: ");
         String description = in.nextLine();
         item.setDescription(description);

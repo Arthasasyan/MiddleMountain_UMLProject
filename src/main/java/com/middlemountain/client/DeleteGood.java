@@ -3,7 +3,7 @@ package com.middlemountain.client;
 import java.util.Scanner;
 
 public class DeleteGood {
-    public void DeleteGood() throws Exception {
+    public void deleteGood() throws Exception {
         Scanner in = new Scanner(System.in);
         System.out.print("Enter the good's id or name: ");
         String delete = in.nextLine();

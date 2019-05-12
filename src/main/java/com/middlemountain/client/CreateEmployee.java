@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class CreateEmployee {
     private Employee employee = new Employee();
 
-    public void CreateEmployee() {
+    public void createEmployee() {
         Scanner in = new Scanner(System.in);
         System.out.print("Enter an employee's name: ");
         String name = in.nextLine();

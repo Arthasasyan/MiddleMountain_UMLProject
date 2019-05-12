@@ -154,7 +154,12 @@ public class MagicService implements Service {
               .setId(Integer.parseInt(employeeInDatabase.get(0)))
               .setName(employeeInDatabase.get(1))
               .setSalary(Float.parseFloat(employeeInDatabase.get(2)))
-              .setPermission(Permission.fromInteger(employeeInDatabase.get(3)));
+              .setPermission(Permission.fromInteger(employeeInDatabase.get(3)))
+              .setOnVacation(Integer.parseInt(employeeInDatabase.get(4)))
+              .setFired(Integer.parseInt(employeeInDatabase.get(5)));
+      if(employee.getFired()==1) {
+        throw new Exception();
+      }
       return employee;
     } catch (Exception e) {
       throw new Exception("Incorrect username or password");
@@ -162,14 +167,16 @@ public class MagicService implements Service {
   }
 
   public void createOrder(Order order) throws Exception {
-    dao.insertInto("Order", toListString(order));
-    if(!(order.getEnchantmentJobs() ==  null)) {
+    Integer orderID = dao.insertInto("Order", toListString(order));
+    order.setId(orderID);
+    if(!(order.getEnchantmentJobs() == null)) {
       for (EnchantmentJob enchantmentJob : order.getEnchantmentJobs()) {
         Integer itemID = dao.insertInto("Item", toListString(enchantmentJob.getItem()));
         enchantmentJob.getItem().setId(itemID);
         Integer enchantmentID = dao.insertInto("EnchantmentJob", toListString(enchantmentJob));
         enchantmentJob.setId(enchantmentID);
         List<String> res = new ArrayList<>();
+        res.add("0");
         res.add(order.getId().toString());
         res.add(enchantmentJob.getId().toString());
         dao.insertInto("OrderEnchantmentJob", res);
@@ -178,12 +185,14 @@ public class MagicService implements Service {
     if(!(order.getGoods()== null)) {
       for (Good good : order.getGoods()) {
         List<String> res = new ArrayList<>();
+        res.add("0");
         res.add(good.getId().toString());
         res.add(order.getId().toString());
         dao.insertInto("OrderGood", res);
       }
     }
   }
+
 
   public String createEmployee(Employee employee, String username) throws Exception {
     try {
@@ -294,6 +303,7 @@ public class MagicService implements Service {
 
   private List<String> toListString(CreationJob creationJob) {
     List<String> result = new ArrayList<>();
+    result.add(creationJob.getId().toString());
     result.add(creationJob.getGood().getId().toString());
     result.add(creationJob.getEmployee().getId().toString());
     result.add(creationJob.getAmountRemaining().toString());

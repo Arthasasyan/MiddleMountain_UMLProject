@@ -12,32 +12,32 @@ public class CreateOrder {
     private OrderStatus orderStatus;
     private Employee employee;
     Scanner in = new Scanner(System.in);
-    public void CreateOrder() throws Exception {
+    public void createOrder() throws Exception {
         System.out.println("Order creation process");
         System.out.print("Enter your username: ");
         String username = in.nextLine();
         System.out.print("Enter a client name: ");
         String clientName = in.nextLine();
         System.out.print("Client's address. ");
-        Address address = EnterAddress();
+        Address address = enterAddress();
         System.out.print("Do you want to enchant item?\nYes(0) or No(1) - ");
         int action = in.nextInt();
         while (action == 0) {
             CreateEnchantmentJob createEnchantmentJob = new CreateEnchantmentJob();
-            enchantmentJob = createEnchantmentJob.CreateEnchantmentJob();
+            enchantmentJob = createEnchantmentJob.createEnchantmentJob();
             enchantmentJob.setCompleted(1);
             order.addEnchantmentJob(enchantmentJob);
             System.out.print("Do you want to enchant some more? Yes(0) or No(1) - ");
             action = in.nextInt();
         }
-        in.nextLine();
-        System.out.print("You have to add a good\n");
-        AddGood();
-        System.out.print("Do you want to add something else? Yes(0) or No(1) - ");
+        System.out.print("Do you want to add good? Yes(0) or No(1) - ");
         int addGood = in.nextInt();
+        in.nextLine();
         while ( addGood == 0 ) {
-            AddGood();
+            addGood();
+            System.out.print("Do you want to add something else? Yes(0) or No(1) - ");
             addGood = in.nextInt();
+            in.nextLine();
         }
         orderStatus = OrderStatus.NEW;
         employee = MainApp.service.getEmployee(username);
@@ -47,12 +47,13 @@ public class CreateOrder {
         order.setAssignedEmployee(employee);
         try {
             MainApp.service.createOrder(order);
+            order.setStatus(OrderStatus.SHIPPING);
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("Order with " + order.getId() + " failed to create.");
         }
     }
 
-    public void AddGood() throws Exception {
+    public void addGood() throws Exception {
         System.out.print("Enter a good's id or name: ");
         String add = in.nextLine();
         try {
@@ -64,7 +65,7 @@ public class CreateOrder {
         }
     }
 
-    public Address EnterAddress() {
+    public Address enterAddress() {
         System.out.print("Enter a country: ");
         String countryShip = in.nextLine();
         System.out.print("Enter a city: ");

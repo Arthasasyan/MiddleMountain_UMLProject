@@ -3,7 +3,7 @@ package com.middlemountain.client;
 import java.util.Scanner;
 
 public class DeleteEmployee {
-    public void DeleteEmployee() throws Exception {
+    public void deleteEmployee() throws Exception {
         Scanner in = new Scanner(System.in);
         System.out.print("Enter the employee's id or username: ");
         String delete = in.nextLine();

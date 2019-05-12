@@ -9,29 +9,34 @@ public class Login {
     public static final String ANSI_RED = "\u001B[31m";
     public static final String ANSI_WHITE = "\u001B[37m";
     private Employee employee;
-    public void Login () throws Exception {
+    public void login() throws Exception {
         Scanner in = new Scanner(System.in);
         System.out.println(ANSI_WHITE + "Please, enter your login: ");
-        String login = in.nextLine();
+        String logIn = in.nextLine();
         System.out.println("Enter your password: ");
         String password = in.nextLine();
-        if(!login.equals("") && !password.equals("")) {
+        if(!logIn.equals("") && !password.equals("")) {
             try {
-                employee = MainApp.service.login(login, password);
+                employee = MainApp.service.login(logIn, password);
             } catch (Exception e) {
-                System.out.println(ANSI_RED + "Warning!\nLogin or password incorrect! Try again." );
-                new Login();
+                System.out.println(ANSI_RED + "Warning!\nlogin or password incorrect! Try again." );
+                Login log = new Login();
+                log.login();
             }
-            if (MainApp.service.login(login, password).getPermission().equals(Permission.MANAGER)) {
+            if (MainApp.service.login(logIn, password).getPermission().equals(Permission.MANAGER)) {
                 System.out.println("Welcome, manager " + employee.getName() + "!");
-                new ManagerAction();
+                ManagerAction managerAction = new ManagerAction();
+                managerAction.managerAction();
             }
-            else if (MainApp.service.login(login, password).getPermission().equals(Permission.EMPLOYEE)) {
+            else if (MainApp.service.login(logIn, password).getPermission().equals(Permission.EMPLOYEE)) {
                 System.out.println("Welcome, employee " + employee.getName() + "!");
+                EmployeeAction employeeAction = new EmployeeAction();
+                employeeAction.employeeAction();
             }
         } else {
-            System.out.println(ANSI_RED + "Warning!\n Login or password is empty! Try again.");
-            new Login();
+            System.out.println(ANSI_RED + "Warning!\n login or password is empty! Try again.");
+            Login log = new Login();
+            log.login();
         }
     }
 

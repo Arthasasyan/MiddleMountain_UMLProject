@@ -10,7 +10,7 @@ public class CreateCreationJob {
     private Good good;
     private Employee employee;
     private CreationJob creationJob = new CreationJob();
-    public void CreateCreationJob() throws Exception {
+    public void createCreationJob() throws Exception {
         Scanner in = new Scanner(System.in);
         System.out.print("Do you want to create good? Yes(0) or No(1) - ");
         int action = in.nextInt();

@@ -9,7 +9,7 @@ public class CreateGood {
     private Good good = new Good();
     private MagicType magicType;
 
-    public void CreateGood() throws Exception {
+    public void createGood() throws Exception {
         Scanner in = new Scanner(System.in);
         System.out.print("Enter a good's name: ");
         String name = in.nextLine();

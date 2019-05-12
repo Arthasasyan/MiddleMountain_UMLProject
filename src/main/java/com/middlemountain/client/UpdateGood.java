@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class UpdateGood {
     private Good good;
     private CreateGood createGood = new CreateGood();
-    public void UpdateGood() throws Exception {
+    public void updateGood() throws Exception {
         Scanner in = new Scanner(System.in);
         System.out.print("Enter the good's id or username: ");
         String update = in.nextLine();
