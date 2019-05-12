@@ -18,6 +18,7 @@ public class UpdateCreationJob {
         creationJob.setAmountRemaining(amount);
         try {
             MainApp.service.updateCreationJob(creationJob);
+            System.out.println("Creation job with " + creationJob.getId() + " id was updated.");
         } catch (Exception e) {
             System.out.println("Creation job with " + creationJob.getId() + " id failed to update.");
         }

@@ -33,9 +33,9 @@ public class CreateEmployee {
         employee.setFired(fired);
         try {
             MainApp.service.createEmployee(employee, username);
+            System.out.println("A new employee " + name + " has got " + employee.getId() + " id");
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("Employee " + name + " failed to create.");
         }
-        System.out.println("A new employee " + name + " has got " + employee.getId() + " id");
     }
 }

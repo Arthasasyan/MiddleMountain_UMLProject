@@ -30,8 +30,12 @@ public class CreateGood {
         good.setMagicType(magicType);
         good.setAmount(amount);
         good.setDeleted(deleted);
-        MainApp.service.createGood(good);
-        System.out.println("A new good " + name + " has got " + good.getId() + " id");
+        try {
+            MainApp.service.createGood(good);
+            System.out.println("A new good " + name + " has got " + good.getId() + " id");
+        } catch (Exception e) {
+            System.out.println("A new good " + name + " failed to create.");
+        }
     }
 
     public MagicType typeOfMagic(String letter) {

@@ -104,7 +104,7 @@ public class MsSQLDAO implements DatabaseDAO {
   }
   public Set<List<String>> getOrders(Integer employeeID) throws Exception {
     String query = "Select * from [Order] inner join\n" +
-            "Employee on [Order].AssignedEmployeeID = Employee.EmployeeID where Employee.EmployeeID = '" + employeeID;
+            "Employee on [Order].AssignedEmployeeID = Employee.EmployeeID where Employee.EmployeeID = " + employeeID;
     return executeQuery(query);
   }
 

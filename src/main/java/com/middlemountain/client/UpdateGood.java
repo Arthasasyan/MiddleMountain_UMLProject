@@ -40,8 +40,9 @@ public class UpdateGood {
         good.setDeleted(deleted);
         try {
             MainApp.service.updateGood(good);
+            System.out.println("Information about " + good.getName() + " was updated.");
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("Information about " + good.getName() + " failed to update");
         }
     }
 }
