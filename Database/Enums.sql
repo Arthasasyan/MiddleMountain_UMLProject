@@ -16,4 +16,4 @@ insert into OrderStatus values (4, 'READY')
 insert into OrderStatus values (5, 'CLOSED')
 insert into OrderStatus values (6, 'DENIED')
 
-insert into Employee values('Alex Kostyrenko', 30000.0, 2, 'Arthasasyan', '123456')
+insert into Employee values('Alex Kostyrenko', 30000.0, 2, 0, 0, 'Arthasasyan', '123456')

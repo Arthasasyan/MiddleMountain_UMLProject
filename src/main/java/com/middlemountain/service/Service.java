@@ -37,4 +37,5 @@ public interface Service {
   void createGood(Good good) throws Exception;
   void createCreationJob(CreationJob creationJob) throws Exception;
   void updateEmployee(Employee employee) throws Exception;
+  List<Employee> getEmployees() throws Exception;
 }

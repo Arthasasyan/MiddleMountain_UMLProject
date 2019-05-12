@@ -14,6 +14,7 @@ import java.util.Set;
 
 public class MagicService implements Service {
   private DatabaseDAO dao;
+  private EmployeeSystem employeeSystem;
 
   public MagicService(DatabaseDAO dao) {
     this.dao = dao;
@@ -21,6 +22,7 @@ public class MagicService implements Service {
 
   public MagicService() throws Exception{
     dao = new MsSQLDAO();
+    employeeSystem = new EmployeeSystem(dao);
   }
 
   public Good getGood(Integer id) throws Exception {
@@ -60,27 +62,11 @@ public class MagicService implements Service {
   }
 
   public Employee getEmployee(Integer id) throws Exception {
-    List<String> employeeInDatabase = dao.getEmployee(id);
-    Employee employee = new Employee()
-            .setId(Integer.parseInt(employeeInDatabase.get(0)))
-            .setName(employeeInDatabase.get(1))
-            .setSalary(Float.parseFloat(employeeInDatabase.get(2)))
-            .setPermission(Permission.fromInteger(employeeInDatabase.get(3)))
-            .setOnVacation(Integer.parseInt(employeeInDatabase.get(4)))
-            .setFired(Integer.parseInt(employeeInDatabase.get(5)));
-    return employee;
+    return employeeSystem.getEmployee(id);
   }
 
   public Employee getEmployee(String name) throws Exception {
-    List<String> employeeInDatabase = dao.getEmployee(name);
-    Employee employee = new Employee()
-            .setId(Integer.parseInt(employeeInDatabase.get(0)))
-            .setName(employeeInDatabase.get(1))
-            .setSalary(Float.parseFloat(employeeInDatabase.get(2)))
-            .setPermission(Permission.fromInteger(employeeInDatabase.get(3)))
-            .setOnVacation(Integer.parseInt(employeeInDatabase.get(4)))
-            .setFired(Integer.parseInt(employeeInDatabase.get(5)));
-    return employee;
+    return employeeSystem.getEmployee(name);
   }
 
   public void shipOrder(Order order) throws Exception {
@@ -116,8 +102,7 @@ public class MagicService implements Service {
   }
 
   public void deleteEmployee(Employee employee) throws Exception {
-    employee.setFired(1);
-    dao.updateTable("Employee", employee.getId(), toListString(employee));
+    employeeSystem.fireEmployee(employee);
   }
 
   public CreationJob getCreationJob(Integer id) throws Exception {
@@ -200,8 +185,7 @@ public class MagicService implements Service {
      throw new Exception(username + " already registered");
     } catch (Exception e) {
       String password = generatePassword();
-      Integer id = dao.insertInto("Employee", toListString(employee, username, password));
-      employee.setId(id);
+      employeeSystem.hireEmployee(employee,username, password);
       return password;
     }
   }
@@ -235,6 +219,11 @@ public class MagicService implements Service {
   @Override
   public void updateEmployee(Employee employee) throws Exception{
     dao.updateTable("Employee", employee.getId(), toListString(employee));
+  }
+
+  @Override
+  public List<Employee> getEmployees() throws Exception {
+    return employeeSystem.getEmployees();
   }
 
   private EnchantmentJob getEnchantmentJob(Integer id) throws Exception {

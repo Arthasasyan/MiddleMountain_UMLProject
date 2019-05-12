@@ -22,4 +22,5 @@ public interface DatabaseDAO {
   Integer insertInto(String table, List<String> payload) throws Exception;
   Set<List<String>> getOrderGoods(Integer orderID) throws Exception;
   Set<List<String>> getOrderEnchantmentJobs(Integer orderID) throws Exception;
+  Set<List<String>> getEmployees() throws Exception;
 }

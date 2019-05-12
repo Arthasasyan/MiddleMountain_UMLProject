@@ -21,6 +21,8 @@ EmployeeID INT Primary Key IDENTITY(1,1),
 Name Varchar(20),
 Salary Float,
 PermissionID INT,
+OnVacation Bit,
+Fired Bit,
 Username Varchar(20),
 Password Varchar(20),
 Foreign Key(PermissionID) references Permission(PermissionID));
@@ -31,6 +33,8 @@ MagicTypeID INT,
 Name Varchar(20),
 Description Varchar(20),
 Price Float,
+Amount INT,
+Deleted Bit,
 Foreign key (MagicTypeID) references MagicType(MagicTypeID));
 go
 create table CreationJob(

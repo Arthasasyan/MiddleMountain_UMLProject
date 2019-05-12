@@ -157,5 +157,11 @@ public class MsSQLDAO implements DatabaseDAO {
     return executeQuery(query);
   }
 
+  @Override
+  public Set<List<String>> getEmployees() throws Exception {
+    String query = "Select * from Employee where Fired = 0";
+    return executeQuery(query);
+  }
+
 
 }
