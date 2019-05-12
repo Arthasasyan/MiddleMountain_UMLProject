@@ -22,7 +22,7 @@ public class CreateEnchantmentJob {
         String description = in.nextLine();
         enchantmentJob.setMagicType(magicType);
         enchantmentJob.setDescription(description);
-        enchantmentJob.setCompleted(false);
+        enchantmentJob.setCompleted(0);
         return enchantmentJob;
     }
 

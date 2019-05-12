@@ -16,5 +16,5 @@ public class EnchantmentJob {
   private Item item;
   private MagicType magicType;
   private String description;
-  private Boolean completed;
+  private Integer completed;
 }

@@ -97,7 +97,7 @@ public class MagicService implements Service {
   }
 
   public void updateOrder(Order order) throws Exception {
-    dao.updateTable("[Order]", order.getId(), toListString(order));
+    dao.updateTable("Order", order.getId(), toListString(order));
     if(!(order.getGoods() == null)) {
       for (Good good : order.getGoods()) {
         updateGood(good);
@@ -162,7 +162,7 @@ public class MagicService implements Service {
   }
 
   public void createOrder(Order order) throws Exception {
-    dao.insertInto("[Order]", toListString(order));
+    dao.insertInto("Order", toListString(order));
     if(!(order.getEnchantmentJobs() ==  null)) {
       for (EnchantmentJob enchantmentJob : order.getEnchantmentJobs()) {
         Integer itemID = dao.insertInto("Item", toListString(enchantmentJob.getItem()));
@@ -234,7 +234,7 @@ public class MagicService implements Service {
             .setId(Integer.parseInt(enchantmentJobInDataBase.get(0)))
             .setMagicType(MagicType.fromInteger(enchantmentJobInDataBase.get(2)))
             .setDescription(enchantmentJobInDataBase.get(3))
-            .setCompleted(Boolean.getBoolean(enchantmentJobInDataBase.get(4)));
+            .setCompleted(Integer.parseInt(enchantmentJobInDataBase.get(4)));
     List<String> itemInDatabase = dao.getItem(Integer.parseInt(enchantmentJobInDataBase.get(1)));
     Item item = new Item().setId(Integer.parseInt(itemInDatabase.get(0))).setDescription(itemInDatabase.get(1));
     enchantmentJob.setItem(item);

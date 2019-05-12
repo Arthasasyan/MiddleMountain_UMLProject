@@ -25,13 +25,13 @@ public class CreateOrder {
         while (action == 0) {
             CreateEnchantmentJob createEnchantmentJob = new CreateEnchantmentJob();
             enchantmentJob = createEnchantmentJob.CreateEnchantmentJob();
-            enchantmentJob.setCompleted(true);
+            enchantmentJob.setCompleted(1);
             order.addEnchantmentJob(enchantmentJob);
             System.out.print("Do you want to enchant some more? Yes(0) or No(1) - ");
             action = in.nextInt();
         }
         in.nextLine();
-        System.out.print("You have to add a good");
+        System.out.print("You have to add a good\n");
         AddGood();
         System.out.print("Do you want to add something else? Yes(0) or No(1) - ");
         int addGood = in.nextInt();
