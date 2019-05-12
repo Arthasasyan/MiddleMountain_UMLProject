@@ -24,24 +24,28 @@ public class MagicService implements Service {
   }
 
   public Good getGood(Integer id) throws Exception {
-    List<String> goodInDatabse = dao.getGood(id);
+    List<String> goodInDatabase = dao.getGood(id);
     Good good = new Good()
-            .setId(Integer.parseInt(goodInDatabse.get(0)))
-            .setMagicType(MagicType.fromInteger(goodInDatabse.get(1)))
-            .setName(goodInDatabse.get(2))
-            .setDescription(goodInDatabse.get(3))
-            .setPrice(Float.parseFloat(goodInDatabse.get(4)));
+            .setId(Integer.parseInt(goodInDatabase.get(0)))
+            .setMagicType(MagicType.fromInteger(goodInDatabase.get(1)))
+            .setName(goodInDatabase.get(2))
+            .setDescription(goodInDatabase.get(3))
+            .setPrice(Float.parseFloat(goodInDatabase.get(4)))
+            .setAmount(Integer.parseInt(goodInDatabase.get(5)))
+            .setDeleted(Integer.parseInt(goodInDatabase.get(6)));
     return good;
   }
 
   public Good getGood(String name) throws Exception {
-    List<String> goodinDatabase = dao.getGood(name);
+    List<String> goodInDatabase = dao.getGood(name);
     Good good = new Good()
-            .setId(Integer.parseInt(goodinDatabase.get(0)))
-            .setMagicType(MagicType.fromInteger(goodinDatabase.get(1)))
-            .setName(goodinDatabase.get(2))
-            .setDescription(goodinDatabase.get(3))
-            .setPrice(Float.parseFloat(goodinDatabase.get(4)));
+            .setId(Integer.parseInt(goodInDatabase.get(0)))
+            .setMagicType(MagicType.fromInteger(goodInDatabase.get(1)))
+            .setName(goodInDatabase.get(2))
+            .setDescription(goodInDatabase.get(3))
+            .setPrice(Float.parseFloat(goodInDatabase.get(4)))
+            .setAmount(Integer.parseInt(goodInDatabase.get(5)))
+            .setDeleted(Integer.parseInt(goodInDatabase.get(6)));
     return good;
   }
 
@@ -61,7 +65,9 @@ public class MagicService implements Service {
             .setId(Integer.parseInt(employeeInDatabase.get(0)))
             .setName(employeeInDatabase.get(1))
             .setSalary(Float.parseFloat(employeeInDatabase.get(2)))
-            .setPermission(Permission.fromInteger(employeeInDatabase.get(3)));
+            .setPermission(Permission.fromInteger(employeeInDatabase.get(3)))
+            .setOnVacation(Integer.parseInt(employeeInDatabase.get(4)))
+            .setFired(Integer.parseInt(employeeInDatabase.get(5)));
     return employee;
   }
 
@@ -71,7 +77,9 @@ public class MagicService implements Service {
             .setId(Integer.parseInt(employeeInDatabase.get(0)))
             .setName(employeeInDatabase.get(1))
             .setSalary(Float.parseFloat(employeeInDatabase.get(2)))
-            .setPermission(Permission.fromInteger(employeeInDatabase.get(3)));
+            .setPermission(Permission.fromInteger(employeeInDatabase.get(3)))
+            .setOnVacation(Integer.parseInt(employeeInDatabase.get(4)))
+            .setFired(Integer.parseInt(employeeInDatabase.get(5)));
     return employee;
   }
 
@@ -103,11 +111,13 @@ public class MagicService implements Service {
   }
 
   public void deleteGood(Good good) throws Exception {
-    dao.deleteFromTable("Good", good.getId());
+    good.setDeleted(1);
+    dao.updateTable("Good", good.getId(), toListString(good));
   }
 
   public void deleteEmployee(Employee employee) throws Exception {
-    dao.deleteFromTable("Employee", employee.getId());
+    employee.setFired(1);
+    dao.updateTable("Employee", employee.getId(), toListString(employee));
   }
 
   public CreationJob getCreationJob(Integer id) throws Exception {
@@ -242,6 +252,8 @@ public class MagicService implements Service {
     result.add(encloseInQuotes(employee.getName()));
     result.add(employee.getSalary().toString());
     result.add(Permission.toInteger(employee.getPermission()).toString());
+    result.add(employee.getOnVacation().toString());
+    result.add(employee.getFired().toString());
     return result;
   }
 
@@ -253,6 +265,8 @@ public class MagicService implements Service {
     result.add(encloseInQuotes(good.getName()));
     result.add(encloseInQuotes(good.getDescription()));
     result.add(good.getPrice().toString());
+    result.add(good.getAmount().toString());
+    result.add(good.getDeleted().toString());
     return result;
   }
 
@@ -292,6 +306,8 @@ public class MagicService implements Service {
     result.add(encloseInQuotes(employee.getName()));
     result.add(employee.getSalary().toString());
     result.add(Permission.toInteger(employee.getPermission()).toString());
+    result.add(employee.getOnVacation().toString());
+    result.add(employee.getFired().toString());
     result.add(encloseInQuotes(username));
     result.add(encloseInQuotes(password));
     return result;

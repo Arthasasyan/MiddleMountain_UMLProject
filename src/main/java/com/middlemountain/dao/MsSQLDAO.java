@@ -109,8 +109,8 @@ public class MsSQLDAO implements DatabaseDAO {
   }
 
   public void updateTable(String table, Integer id, List<String> payload) throws Exception {
-    ResultSetMetaData rsmd = conn.createStatement().executeQuery("select * from " + table).getMetaData();
-    String query = "update " + table + " set ";
+    ResultSetMetaData rsmd = conn.createStatement().executeQuery("select * from [" + table + "]").getMetaData();
+    String query = "update [" + table + "] set ";
     for(int i = 2; i <= rsmd.getColumnCount(); i++)
     {
       if(i == payload.size() + 1) {
@@ -124,8 +124,8 @@ public class MsSQLDAO implements DatabaseDAO {
   }
 
   public void deleteFromTable(String table, Integer id) throws Exception {
-    ResultSetMetaData rsmd = conn.createStatement().executeQuery("select * from " + table).getMetaData();
-    String query = "delete from " + table + " where " + rsmd.getColumnName(1) + " = " + id;
+    ResultSetMetaData rsmd = conn.createStatement().executeQuery("select * from [" + table + "]").getMetaData();
+    String query = "delete from [" + table + "] where " + rsmd.getColumnName(1) + " = " + id;
     conn.prepareStatement(query).execute();
   }
 
@@ -133,7 +133,7 @@ public class MsSQLDAO implements DatabaseDAO {
     Statement statement = conn.createStatement();
     String val = "";
     String selectWhere = "";
-    ResultSetMetaData rsmd = conn.createStatement().executeQuery("select * from " + table).getMetaData();
+    ResultSetMetaData rsmd = conn.createStatement().executeQuery("select * from [" + table + "]").getMetaData();
     for (int i = 2; i <= rsmd.getColumnCount(); i++)
     {
       val += payload.get(i - 1) + ", ";
@@ -141,10 +141,10 @@ public class MsSQLDAO implements DatabaseDAO {
     }
     val = val.substring(0, val.length() - 2); //removing last coma
     selectWhere = selectWhere.substring(0, selectWhere.length() - 5);
-    String query = "insert into " + table + " values(" + val + ")";
+    String query = "insert into [" + table + "] values(" + val + ")";
     conn.prepareStatement(query).execute();
     //statement.executeQuery("insert into " + table + " values(" + val + ")");
-    return Integer.parseInt(getListOfString("select * from " + table + " where " + selectWhere).get(0));
+    return Integer.parseInt(getListOfString("select * from [" + table + "] where " + selectWhere).get(0));
   }
 
   public Set<List<String>> getOrderGoods(Integer orderID) throws Exception {

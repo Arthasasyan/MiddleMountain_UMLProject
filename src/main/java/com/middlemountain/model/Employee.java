@@ -15,4 +15,6 @@ public class Employee {
   private String name;
   private Float salary;
   private Permission permission;
+  private Integer onVacation;
+  private Integer fired;
 }
