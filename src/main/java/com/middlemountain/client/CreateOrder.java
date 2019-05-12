@@ -48,6 +48,7 @@ public class CreateOrder {
         try {
             MainApp.service.createOrder(order);
             order.setStatus(OrderStatus.SHIPPING);
+            System.out.println("A new order with " + order.getId() + " id was created.");
         } catch (Exception e) {
             System.out.println("Order with " + order.getId() + " failed to create.");
         }

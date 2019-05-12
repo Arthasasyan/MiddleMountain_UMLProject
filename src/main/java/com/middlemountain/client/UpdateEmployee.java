@@ -39,8 +39,9 @@ public class UpdateEmployee {
         employee.setFired(fired);
         try {
             MainApp.service.updateEmployee(employee);
+            System.out.println("Information about " + employee.getName() + " was updated.");
         } catch (Exception e ){
-            System.out.println("Information about" + employee.getName() + " couldn't be updated.");
+            System.out.println("Information about " + employee.getName() + " couldn't be updated.");
         }
     }
 }
