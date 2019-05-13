@@ -22,8 +22,7 @@ public class CreateGood {
         Float price = in.nextFloat();
         System.out.print("Enter an amount of good: ");
         int amount = in.nextInt();
-        System.out.print("Is good deleted? - ");
-        int deleted = in.nextInt();
+        int deleted = 0;
         good.setName(name);
         good.setDescription(description);
         good.setPrice(price);
