@@ -24,8 +24,7 @@ public class CreateEmployee {
         Float salary = in.nextFloat();
         System.out.print("Is employee on vacation? - ");
         int onVacation = in.nextInt();
-        System.out.print("Is employee fired? - ");
-        int fired = in.nextInt();
+        int fired = 0;
         employee.setName(name);
         employee.setSalary(salary);
         employee.setPermission(permission);
